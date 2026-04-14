@@ -1,10 +1,12 @@
+import AdminLayout from './layout/admin/AdminLayout';
 import { router } from './routes/routers'
 import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <RouterProvider router={ router }/>
+      {/* <RouterProvider router={router} /> */}
+      <AdminLayout />
     </>
   );
 }

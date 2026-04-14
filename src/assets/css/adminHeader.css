@@ -1,0 +1,25 @@
+.header {
+    position: fixed;
+    left: 300px;
+    top: 0;
+    right: 0;
+    height: 70px;
+    background-color: #FFFDF9;
+    border-bottom: 1px solid #E6DFD5;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-weight: 600;
+    font-size: 28px;
+    margin: 0;
+}
