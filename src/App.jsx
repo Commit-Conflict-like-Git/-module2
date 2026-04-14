@@ -1,18 +1,10 @@
-import "./assets/css/main.css";
-import "./assets/css/footer.css"
-import Header from "./layout/public/Header";
-import Footer from "./layout/public/footer";
+import { router } from './routes/routers'
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <div className="wrapper">
-        <Header/>
-          <main className="content">
-
-          </main>
-        <Footer/>
-      </div>
+      <RouterProvider router={ router }/>
     </>
   );
 }
