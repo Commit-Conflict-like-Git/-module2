@@ -1,11 +1,16 @@
-.footer {
-    background: #5E7858;
+.footer-area {
+    background-color: #5E7858;
     width: 100%;
-    height: 20%;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.div {
+.copy {
+    margin: 0;
+    background-color: #5E7858;
     color: #FFFFFF;
-    font-family: 'suite';
     text-align: center;
 }

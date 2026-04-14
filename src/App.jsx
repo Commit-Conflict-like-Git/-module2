@@ -1,10 +1,17 @@
 import "./assets/css/main.css";
 import Header from "./layout/public/Header";
+import Footer from "./layout/public/footer";
 
 function App() {
   return (
     <>
-      <Header />
+      <div className="wrapper">
+        <Header/>
+          <main className="content">
+
+          </main>
+        <Footer/>
+      </div>
     </>
   );
 }
