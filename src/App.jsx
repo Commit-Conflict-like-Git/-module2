@@ -1,4 +1,5 @@
 import "./assets/css/main.css";
+import "./assets/css/footer.css"
 import Header from "./layout/public/Header";
 import Footer from "./layout/public/footer";
 
