@@ -1,11 +1,57 @@
-import React from 'react'
+import { NavLink } from "react-router-dom";
+import "../../assets/css/navbar.css";
 
 function Navbar() {
   return (
-    <div>
-      
-    </div>
-  )
+    <nav className="navbar">
+      <ul className="navbar-list">
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            홈
+          </NavLink>
+        </li>
+        <li>|</li>
+        <li>
+          <NavLink
+            to="/Train"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            훈련
+          </NavLink>
+        </li>
+        <li>|</li>
+        <li>
+          <NavLink
+            to="/Cart"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            장바구니
+          </NavLink>
+        </li>
+        <li>|</li>
+        <li>
+          <NavLink
+            to="/Notice"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            공지사항
+          </NavLink>
+        </li>
+        <li>|</li>
+        <li>
+          <NavLink
+            to="/MyPage"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            마이페이지
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;
