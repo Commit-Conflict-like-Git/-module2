@@ -1,0 +1,32 @@
+.navbar {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2EADB;
+}
+
+.navbar-list{
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.navbar-list a {
+    text-decoration: none;
+    color: #5D695D;
+    background-color: transparent;
+}
+
+ul, li{
+    background-color: transparent;
+}
+
+.navbar-list a:hover {
+    text-decoration: underline;
+}
+
+.navbar-list a.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
