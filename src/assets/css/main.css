@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color: #6B5949;
+    background: #FCF9EE;
+}
+
+@font-face {
+    font-family: 'suite';
+    src: url(../font/SUITE-Variable.ttf);
+}
+
+body, div {
+    font-family: 'suite';
+}
