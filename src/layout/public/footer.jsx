@@ -1,12 +1,12 @@
-import './footer.css'
+import '../../assets/css/footer.css'
 
-function footer() {
+function Footer() {
     return (
-        <footer>
-            <div>(주) 오늘의 훈련</div>
-            <div>Copyright 2026, ALL right reserved</div>
+        <footer id='footer-area'>
+            (주) 오늘의 훈련 <br/>
+            Copyright 2026, ALL right reserved
         </footer>
     )
 }
 
-export default footer
+export default Footer

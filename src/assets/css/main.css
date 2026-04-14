@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 
-    color: #6B5949;
     background: #FCF9EE;
 }
 
@@ -12,6 +11,17 @@
     src: url(../font/SUITE-Variable.ttf);
 }
 
-body, div {
+body {
+    color: #6B5949;
     font-family: 'suite';
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
 }
