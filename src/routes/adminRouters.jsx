@@ -7,7 +7,7 @@ import Train from "../pages/public/Train"
 import PaymentList from "../pages/admin/PaymentList"
 import ApproveManagement from "../pages/admin/ApproveManagement"
 
-export const router = createBrowserRouter([
+export const adminRouter = createBrowserRouter([
     {
         path: '/',
         element: <AdminLayout />,
