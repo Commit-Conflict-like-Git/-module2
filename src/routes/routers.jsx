@@ -4,6 +4,7 @@ import Home from '../pages/public/Home'
 import Train from '../pages/public/Train'
 import Notice from '../pages/public/Notice'
 import Signup from "../pages/public/signup"
+import Login from "../pages/public/Login"
 
 export const router = createBrowserRouter([
     {
@@ -23,8 +24,12 @@ export const router = createBrowserRouter([
                 element: <Notice/>
             },
             {
-                path: 'Signup',
+                path: 'signup',
                 element: <Signup/>
+            },
+            {
+                path: 'login',
+                element: <Login/>
             }
         ]
     }

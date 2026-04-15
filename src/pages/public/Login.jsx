@@ -1,8 +1,9 @@
 import React from 'react'
+import '../../assets/css/signup.css'
 
 function Login() {
   return (
-    <div>
+    <div className='inner-body'>
       login
     </div>
   )
