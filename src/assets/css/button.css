@@ -1,15 +1,36 @@
-.btn {
+.btn1, .btn2, .btn3 {
     font-family: 'suite';
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .btn1 {
-    
+    background: #C2AA84;
+    color: #FFFFFF;
+    border: none;
+}
+
+.btn1:hover {
+    background: #A59170;
 }
 
 .btn2 {
+    background: #7693B2;
+    color: #FFFFFF;
+    border: none;
+}
 
+.btn2:hover {
+    background: #647D97;
 }
 
 .btn3 {
+    background: #FFFDF9;
+    color: #6B5949;
+    border: solid 1px #6B5949;
+}
 
+.btn3:hover {
+    background: #F6F0E2;
 }
