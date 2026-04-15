@@ -1,26 +1,24 @@
 .inner-body {
-    background: pink;
+    background: #FFFDF9;
     height: 69vh;
     width: 80%;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 20px;
+    margin: 30px auto;
+    overflow: hidden;
+    justify-content: center;
 }
 
-.role-select {
-    width: 350px;
-    border: solid 2px #705948;
-    background: #FFFDFD;
-    border-radius: 15px;
+.paw {      
+    width: 50px;
+    height: 50px;
 }
 
-img, p {
-    background: transparent;
+.title {     
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 10px;
 }
-
-.role {
-    font-size: 20px;
-}
-
 
 /* 훈련사 파일 업로드 */
 .file-upload {
@@ -29,7 +27,7 @@ img, p {
 }
 
 .upload-name {
-
+    border: solid 1px #705948;
 }
 
 .file-upload label {

@@ -17,13 +17,14 @@ function Signup() {
         phoneNumber: '',
         email: '',
         pwd: ''
+        // 파일 이름, 경로
     })
 
     const nextStep = () => {
-        if (formData.role === 'owner' && step === 2) {
-            setStep(4);
-        } else if (formData.role === 'trainer' && step === 3) {
-            setStep(4);
+        if (formData.role === 'owner' && step === 1) {
+            setStep(3);
+        } else if (formData.role === 'trainer' && step === 2) {
+            setStep(3);
         } else {
             setStep(step + 1);
         }
@@ -35,13 +36,12 @@ function Signup() {
             {step === 0 && <SignupRoleSelect formData={formData} onFormData={setFormData} onNext={nextStep}/>}
 
             {step === 1 && <SignupInfo formData={formData} onFormData={setFormData} onNext={nextStep}/>}
-            {step === 2 && <SignupIdPwd formData={formData} onFormData={setFormData} onNext={nextStep}/>}
 
             {/* 훈련사 자격증 */}
-            {step === 3 && <SignupLicense formData={formData} onFormData={setFormData} onNext={nextStep}/>}
+            {step === 2 && <SignupLicense formData={formData} onFormData={setFormData} onNext={nextStep}/>}
 
             {/* 회원가입 완료 */}
-            {step === 4 && <SignupFinish role={formData.role}/>}
+            {step === 3 && <SignupFinish role={formData.role}/>}
         </div>
     )
 }

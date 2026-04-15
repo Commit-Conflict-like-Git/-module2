@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import '../../assets/css/signup.css'
 import '../../assets/css/button.css'
 
-function SignupLicense({onNext}) {
+function SignupLicense({onNext, formData, onFormData}) {
 
   const [fileName, setFileName] = useState("파일을 선택하세요.");
 
   const handleFileChange = (e) => {
       if (e.target.files && e.target.files[0]) {
-        setFileName(e.target.files[0].name);
+        const file = e.target.files[0];
+        setFileName(file.name);
+        onFormData({ ...formData, certificationFile: file });
       } else {
         setFileName("파일을 선택하세요.");
       }
@@ -40,7 +42,7 @@ function SignupLicense({onNext}) {
           style={{ display: 'none' }}
         />
       </div>
-      <button onClick={handleNext}> 다음 </button>
+      <button onClick={handleNext} className='btn1'> 다음 &gt; </button>
     </div>
   )
 }
