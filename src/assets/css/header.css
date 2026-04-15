@@ -10,7 +10,6 @@
 .logo {
   width: 150px;
   height: 50px;
-  background-color: #FFFDF9;
 }
 
 .logo img {
@@ -19,12 +18,10 @@
   margin-left: 30px;
   min-height: 50px;
   min-width: 150px;
-  background-color: #FFFDF9;
 }
 
 .logout {
   color: #6B5B4D;
-  background-color: #FFFDF9;
   border: none;
   cursor: pointer;
   margin-right: 30px;
@@ -33,4 +30,8 @@
 
 .logout:hover {
   text-decoration: underline;
+}
+
+div, img, p {
+  background-color: transparent;
 }

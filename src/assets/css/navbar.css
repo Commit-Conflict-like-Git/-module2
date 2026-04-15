@@ -1,5 +1,6 @@
 .navbar {
-    height: 60px;
+    height: 40px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,9 +11,10 @@
     display: flex;
     gap: 40px;
     list-style: none;
+    white-space: nowrap;
 }
 
-.navbar-list a {
+.navbar-list a, li {
     text-decoration: none;
     color: #5D695D;
     background-color: transparent;
