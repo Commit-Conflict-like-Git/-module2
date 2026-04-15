@@ -1,18 +1,16 @@
 .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 300px;
+    width: 18vw;
     height: 100vh;
     background-color: #FFFDF9;
     border-right: 1px solid #E6DFD5;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
-
+/* 로고 영역 */
 .sidebar-logo {
-    height: 70px;
+    height: 6.5vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,12 +19,13 @@
 }
 
 .sidebar-logo img {
-    width: 200px;
-    height: 60px;
+    width: 10vw;
+    height: auto;
     object-fit: contain;
     background-color: transparent;
 }
 
+/* 메뉴 */
 .sidebar-nav {
     flex: 1;
     display: flex;
@@ -34,17 +33,19 @@
     background-color: #FFFDF9;
 }
 
+/* 메뉴 아이템 */
 .sidebar-menu-item {
-    height: 60px;
+    height: 6vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'SUITE Variable', sans-serif;
+
     font-weight: 600;
-    font-size: 24px;
-    color: #6B5949;
+    font-size: clamp(14px, 1.2vw, 22px);
+
     background-color: #FFFDF9;
     border-bottom: 1px solid #E6DFD5;
+
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -57,13 +58,16 @@
     background-color: #E6DFD5;
 }
 
+/* 로그아웃 */
 .sidebar-logout {
-    height: 80px;
+    height: 7vh;
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-weight: 400;
-    font-size: 22px;
+    font-size: clamp(13px, 1.1vw, 20px);
+
     cursor: pointer;
     background-color: #FFFDF9;
 }
