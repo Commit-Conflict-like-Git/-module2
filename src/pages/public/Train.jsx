@@ -1,21 +1,15 @@
 import "../../assets/css/train.css";
 import paw from "../../assets/img/paw.svg";
 import { useNavigate } from "react-router-dom";
+import trainData from "../../pages/owner/trainData.json";
 
 function Train() {
   const navigate = useNavigate();
 
-  const trainingData = [
-    { id: 1, title: "사회성 길들이기 기초", img: "" },
-    { id: 2, title: "배변 훈련의 정석", img: "" },
-    { id: 3, title: "산책 매너 배우기", img: "" },
-    { id: 4, title: "분리불안 예방 교육", img: "" },
-    { id: 5, title: "기본 복종 훈련", img: "" },
-    { id: 6, title: "클리커 트레이닝", img: "" },
-  ];
+  const trainingData = trainData;
 
   const handleCardClick = (id) => {
-    navigate(`/Train/${id}`);
+    navigate(`/train/${id}`);
   };
 
   return (
@@ -49,15 +43,17 @@ function Train() {
         {/* map 함수를 사용하여 카드 자동 생성 */}
         {trainingData.map((item) => (
           <div
-            key={item.id}
+            key={item.trainId}
             className="train-card"
-            onClick={() => handleCardClick(item.id)}
+            onClick={() => handleCardClick(item.trainId)}
           >
             <div className="tr-card-img">
-              {item.img && <img src={item.img} alt={item.title} />}
+              {item.trainImg && (
+                <img src={item.trainImg} alt={item.trainTitle} />
+              )}
             </div>
             <div className="tr-card-content">
-              <span className="tr-card-title">{item.title}</span>
+              <span className="tr-card-title">{item.trainTitle}</span>
             </div>
           </div>
         ))}
