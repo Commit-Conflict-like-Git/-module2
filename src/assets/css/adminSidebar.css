@@ -48,6 +48,8 @@
 
     cursor: pointer;
     transition: background-color 0.2s;
+    text-decoration: none;
+    color: #6B5949;
 }
 
 .sidebar-menu-item:hover {
