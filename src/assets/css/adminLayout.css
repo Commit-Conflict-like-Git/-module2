@@ -1,3 +1,38 @@
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+/* 메인 영역 */
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 콘텐츠 영역(헤더 아래) */
 .content {
-    border-radius: 20px 20px 0 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 2vh 2vw 0;
+    box-sizing: border-box;
+    background: transparent;
+}
+
+/* 실제 콘텐츠 */
+.content-box {
+    width: 76vw;
+    height: 87vh;
+
+    border-radius: 1.5vw 1.5vw 0 0;
+    background: #FFFDF9;
+
+    padding: 1.5vw;
+    box-sizing: border-box;
+
+    overflow-y: auto;
+
+    max-width: 1600px;
 }
