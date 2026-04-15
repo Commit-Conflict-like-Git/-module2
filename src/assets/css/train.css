@@ -1,0 +1,141 @@
+.back-container {
+    /* min-height: 700px; */
+    height: 69vh;
+    width: 80%;
+    background-color: #FFFDF9;
+    border-radius: 20px;
+    margin: 30px auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.list-header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px 10px 0px
+}
+
+.title-group {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.paw-icon {      
+    width: 50px;
+    height: 50px;
+}
+
+.training-title {     
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.search-group {
+    display: flex;
+    gap: 10px;           /*필터와 검색창 사이 간격*/
+    margin-right: 30px;
+    align-items: center;
+}
+
+.filter-select {
+    height: 35px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    color: #6B5949;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+}
+
+.filter-select option {
+    background-color: transparent;
+}
+
+.search-box {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+.search-btn {
+    height: 35px;
+    cursor: pointer;
+    background-color: #D9D9D9;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.train-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    gap: 20px; 
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.train-card {
+    width: 100%;
+    min-height: 200px; 
+    background-color: white;
+    border: 1px solid #BDBDBD;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.train-card:hover {
+    transform: translateY(-3px);
+    border: 1px solid black;
+}
+
+.tr-card-img {
+    width: 100%;
+    height: 160px;
+    background-color: #BDBDBD;
+}
+
+.tr-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tr-card-content {
+    padding: 15px;
+    background-color: #FFFFFF;
+    border-top: 1px solid #BDBDBD;
+    display: flex;
+    align-items: center;
+}
+
+.tr-card-title {
+    font-size: 20px;
+    background-color: transparent;
+}
