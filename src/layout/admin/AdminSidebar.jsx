@@ -1,15 +1,19 @@
 import '../../assets/css/AdminSidebar.css';
 import logo from '../../assets/img/logo.svg';
+import { Link, useLocation } from 'react-router-dom';
 
-const AdminSidebar = ({ activeMenu = '공지사항' }) => {
+
+const AdminSidebar = () => {
+    const location = useLocation();
+
     const menuItems = [
-        { id: 1, label: '공지사항' },
-        { id: 2, label: '배너 관리' },
-        { id: 3, label: '보호자 관리' },
-        { id: 4, label: '훈련사 관리' },
-        { id: 5, label: '훈련 관리' },
-        { id: 6, label: '승인 관리' },
-        { id: 7, label: '결제내역' }
+        { id: 1, label: '공지사항', path: '/' },
+        { id: 2, label: '배너 관리', path: '/Banner' },
+        { id: 3, label: '보호자 관리', path: '/Owner' },
+        { id: 4, label: '훈련사 관리', path: '/Trainer' },
+        { id: 5, label: '훈련 관리', path: '/Train' },
+        { id: 6, label: '승인 관리', path: '/Approve' },
+        { id: 7, label: '결제내역', path: '/Payment' }
     ];
 
     return (
@@ -20,12 +24,14 @@ const AdminSidebar = ({ activeMenu = '공지사항' }) => {
 
             <nav className="sidebar-nav">
                 {menuItems.map(item => (
-                    <div
+                    <Link
                         key={item.id}
-                        className={`sidebar-menu-item ${activeMenu === item.label ? 'active' : ''}`}
+                        to={item.path}
+                        className={`sidebar-menu-item ${location.pathname === item.path ? 'active' : ''
+                            }`}
                     >
                         {item.label}
-                    </div>
+                    </Link>
                 ))}
             </nav>
 
@@ -36,4 +42,4 @@ const AdminSidebar = ({ activeMenu = '공지사항' }) => {
     );
 };
 
-export default AdminSidebar;
+export default AdminSidebar
