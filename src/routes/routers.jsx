@@ -5,6 +5,7 @@ import Train from "../pages/public/Train";
 import Notice from "../pages/public/Notice";
 import Signup from "../pages/public/signup";
 import TrainDetaile from "../pages/public/TrainDetaile";
+import Login from "../pages/public/Login";
 
 export const router = createBrowserRouter([
   {
