@@ -5,13 +5,16 @@ import '../../assets/css/AdminLayout.css';
 
 function AdminLayout() {
     return (
-        <div className='app'>
-            <Header />
+        <div className="app">
             <Sidebar />
-            <main className='content'>
-                <Outlet />
-            </main>
-
+            <div className="main-area">
+                <Header />
+                <main className='content'>
+                    <div className='content-box'>
+                        <Outlet />
+                    </div>
+                </main>
+            </div>
         </div>
     )
 }
