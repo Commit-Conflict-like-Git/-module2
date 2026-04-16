@@ -5,12 +5,22 @@ import trainData from "../../pages/owner/trainData.json";
 
 function TrainDetaile() {
   const { id } = useParams();
+  const [detail, setDetail] = useState(null);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchDetail = async () => {
+      const docRef = doc(db, "trainings", id);
+      const docSnap = await getDoc(docRef);
 
-  const detail = trainData.find((item) => item.trainId === id);
+      if (docSnap.exists()) {
+        setDetail(docSnap.data());
+      }
+    };
 
-  if (!detail) return <div>데이터를 불러오는 중...</div>;
+    fetchDetail();
+  }, [id]);
+
+  if (!detail) return <div>로딩중...</div>;
 
   return (
     <div className="container">
@@ -32,6 +42,8 @@ function TrainDetaile() {
         <div className="train-content">
           <p>{detail.trainDescription}</p>
         </div>
+
+        <hr />
 
         <div className="review-box">
           <div className="review-title-box">

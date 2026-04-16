@@ -60,8 +60,9 @@ hr {
 }
 
 .train-content {
-    margin-top: 30px;
+    margin: 20px 0px;
     font-size: 20px;
+    white-space: pre-line;  /* 줄바꿈 적용 */
 }
 
 .review-box {
