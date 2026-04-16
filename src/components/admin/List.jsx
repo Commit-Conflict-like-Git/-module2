@@ -1,11 +1,30 @@
-import React from 'react'
+import '../../assets/css/adminList.css'
 
-function List() {
+function List({ data, columns }) {
     return (
-        <div>
-
-        </div>
-    )
+        <table>
+            <thead>
+                <tr>
+                    {columns.map((col) => (
+                        <th key={col.key}>{col.label}</th>
+                    ))}
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((item, idx) => (
+                    <tr key={idx}>
+                        {columns.map((col) => (
+                            <td key={col.key}>
+                                <div className="cell-content">
+                                    {item[col.key] ?? "-"}
+                                </div>
+                            </td>
+                        ))}
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
 }
 
 export default List

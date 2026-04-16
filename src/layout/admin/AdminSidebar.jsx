@@ -8,12 +8,12 @@ const AdminSidebar = () => {
 
     const menuItems = [
         { id: 1, label: '공지사항', path: '/' },
-        { id: 2, label: '배너 관리', path: '/Banner' },
-        { id: 3, label: '보호자 관리', path: '/Owner' },
-        { id: 4, label: '훈련사 관리', path: '/Trainer' },
-        { id: 5, label: '훈련 관리', path: '/Train' },
-        { id: 6, label: '승인 관리', path: '/Approve' },
-        { id: 7, label: '결제내역', path: '/Payment' }
+        { id: 2, label: '배너 관리', path: '/banner' },
+        { id: 3, label: '보호자 관리', path: '/owner' },
+        { id: 4, label: '훈련사 관리', path: '/trainer' },
+        { id: 5, label: '훈련 관리', path: '/train' },
+        { id: 6, label: '승인 관리', path: '/approve' },
+        { id: 7, label: '결제내역', path: '/payment' }
     ];
 
     return (
