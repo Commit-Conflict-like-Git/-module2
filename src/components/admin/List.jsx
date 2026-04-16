@@ -1,4 +1,4 @@
-import '../../assets/css/adminList.css'
+import '../../assets/css/adminList.css';
 
 function List({ data, columns }) {
     return (
@@ -16,7 +16,11 @@ function List({ data, columns }) {
                         {columns.map((col) => (
                             <td key={col.key}>
                                 <div className="cell-content">
-                                    {item[col.key] ?? "-"}
+                                    {col.key === "index"
+                                        ? idx + 1
+                                        : col.render
+                                            ? col.render(item)
+                                            : item[col.key] ?? "-"}
                                 </div>
                             </td>
                         ))}
@@ -27,4 +31,4 @@ function List({ data, columns }) {
     );
 }
 
-export default List
+export default List;

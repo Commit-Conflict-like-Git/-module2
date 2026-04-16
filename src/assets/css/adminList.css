@@ -38,7 +38,8 @@ th {
 }
 
 tbody tr:hover td,
-tbody tr:hover .cell-content {
+tbody tr:hover .cell-content,
+tbody tr:hover .download-icon {
     background-color: var(--table-hover);
     cursor: pointer;
 }
@@ -53,4 +54,10 @@ tbody tr:hover .cell-content {
 
     white-space: normal;
     word-break: break-word;
+}
+
+.download-icon {
+    width: 30px;
+    cursor: pointer;
+    background-color: var(--table-bg);
 }
