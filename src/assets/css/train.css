@@ -76,6 +76,10 @@
     margin-left: 10px;
 }
 
+.search-box ::placeholder {
+    font-size: 15px;
+}
+
 .search-btn {
     height: 35px;
     cursor: pointer;
