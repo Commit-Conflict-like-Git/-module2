@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import { signupWithDetail } from '../../services/authService';
 import SignupRoleSelect from './SignupRoleSelect';
 import SignupInfo from './SignupInfo';
-import SignupIdPwd from './SignupIdPwd';
 import SignupLicense from './SignupLicense';
 import SignupFinish from './SignupFinish';
 
@@ -16,15 +16,27 @@ function Signup() {
         birth: '',
         phoneNumber: '',
         email: '',
-        pwd: ''
+        password: '',
+        passwordConfirm: '',
+        certificationFile: null
         // 파일 이름, 경로
     })
 
-    const nextStep = () => {
+    const nextStep = async () => {
         if (formData.role === 'owner' && step === 1) {
-            setStep(3);
+            try {
+                await signupWithDetail(formData);
+                setStep(3);
+            } catch (error) {
+                console.log('회원가입 중 오류 발생');
+            }         
         } else if (formData.role === 'trainer' && step === 2) {
-            setStep(3);
+            try {
+                await signupWithDetail(formData);
+                setStep(3);
+            } catch (error) {
+                console.log('회원가입 중 오류 발생');
+            }   
         } else {
             setStep(step + 1);
         }
@@ -34,7 +46,6 @@ function Signup() {
     return (
         <div className='signup-container'>
             {step === 0 && <SignupRoleSelect formData={formData} onFormData={setFormData} onNext={nextStep}/>}
-
             {step === 1 && <SignupInfo formData={formData} onFormData={setFormData} onNext={nextStep}/>}
 
             {/* 훈련사 자격증 */}

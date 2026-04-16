@@ -4,10 +4,11 @@ import '../../assets/css/signupPages/information.css'
 import '../../assets/css/button.css'
 
 function SignupInfo({onNext, formData, onFormData}) {
-    const isAllFilled = 
-        formData.name.trim() !== '' && 
-        formData.birth !== '' && 
-        formData.phoneNumber.trim() !== '';
+    // 비밀번호 일치여부 확인
+    const isPasswordMatch = formData.password === formData.passwordConfirm;
+
+    // 이메일 일치 코드 쓰고 지우기!!!!!!!!!!!!!!!!!!!!!!!!!
+    const isEmailChecked = true;
 
     // 전화번호 하이픈 생성
     const handlePhoneChange = (e) => {
@@ -22,11 +23,21 @@ function SignupInfo({onNext, formData, onFormData}) {
             formattedValue = value.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
         }
 
-        // 최대 13자(010-1234-5678)까지만 저장
+        // 최대 13자까지 저장
         if (formattedValue.length <= 13) {
             onFormData({ ...formData, phoneNumber: formattedValue });
         }
     };
+    
+    const isAllFilled = 
+        formData.name.trim() !== '' && 
+        formData.birth !== '' && 
+        formData.phoneNumber.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        formData.password.trim() !== '' &&
+        formData.passwordConfirm.trim() !== '' &&
+        isEmailChecked &&
+        isPasswordMatch;
 
     const handleNext = () => {
         if (isAllFilled) {
@@ -78,16 +89,44 @@ function SignupInfo({onNext, formData, onFormData}) {
                         onChange={handlePhoneChange}
                     />
                 </div>
+                <div className='input-row'>
+                    <label className='info-label'>이메일</label>
+                    <input
+                        type='email'
+                        placeholder='  이메일을 입력해 주세요.'
+                        className='textbox'
+                        value={formData.email}
+                        onChange={(e) => onFormData({...formData, email: e.target.value})}
+                    />
+                    <button className='btn1'>중복확인</button>
+                </div>
+                <div className='input-row'>
+                    <label className='info-label'>비밀번호</label>
+                    <input
+                        type='password'
+                        placeholder='  비밀번호를 입력해 주세요.'
+                        className='textbox'
+                        value={formData.password}
+                        onChange={(e) => onFormData({...formData, password: e.target.value})}
+                    />
+                </div>
+                <div className='input-row'>
+                    <label className='info-label'>비밀번호 확인</label>
+                    <input
+                        type='password'
+                        placeholder='  비밀번호를 다시 입력해주세요.'
+                        className='textbox'
+                        value={formData.passwordConfirm || ''}
+                        onChange={(e) => onFormData({...formData, passwordConfirm: e.target.value})}
+                    />
+                </div>
             </div>
 
             <div className='button-container'>
                 <button
                     onClick={handleNext}
                     className='btn1'
-                    style={{
-                        background: isAllFilled ? '#C2AA84' : '#BDBDBD',
-                        cursor: isAllFilled ? 'pointer' : 'not-allowed'
-                    }}
+                    disabled={!isAllFilled}
                 > 다음 &gt; </button>
             </div>
         </div>

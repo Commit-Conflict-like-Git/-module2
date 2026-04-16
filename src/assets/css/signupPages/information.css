@@ -5,13 +5,13 @@ label {
 .content-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* 전체를 중앙으로 */
+    align-items: center;
     margin-top: 50px;
-    gap: 20px; /* 줄 간격 */
+    gap: 30px;
 }
 
 .info-label {
-    width: 120px;
+    width: 160px;
     font-size: 25px;
 }
 
@@ -19,7 +19,7 @@ label {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 600px; /* 적절한 너비 설정 */
+    max-width: 600px;
 }
 
 input::placeholder {
@@ -66,4 +66,18 @@ input::placeholder {
     width: 100%;
     margin-top: 40px;
     padding-right: 40px;
+}
+
+.button-container .btn1:not(:disabled) {
+    background-color: #C2AA84;
+    cursor: pointer;
+}
+
+.button-container .btn1:not(:disabled):hover {
+    background-color: #A59170;
+}
+
+.button-container .btn1:disabled {
+    background-color: #BDBDBD;
+    cursor: not-allowed;
 }
