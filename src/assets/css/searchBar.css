@@ -1,0 +1,55 @@
+.search-group {
+    display: flex;
+    gap: 10px;           /*필터와 검색창 사이 간격*/
+    margin-right: 30px;
+    align-items: center;
+}
+
+.filter-select {
+    height: 35px;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: 1px solid #D7E1E8;
+    color: #6B5949;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+}
+
+.filter-select option {
+    background-color: transparent;
+}
+
+.search-box {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D7E1E8;
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+.search-box ::placeholder {
+    font-size: 15px;
+}
+
+.search-btn {
+    height: 35px;
+    cursor: pointer;
+    background-color: #D7E1E8;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}

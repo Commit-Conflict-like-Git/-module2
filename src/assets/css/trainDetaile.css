@@ -141,13 +141,23 @@ hr {
     gap: 5px;
 }
 
-.btn1 {
-    padding: 10px 30px;
-    margin-top: auto;
-    font-size: 18px;
+.review-box .btn1, .notice-box .btn1 {
+    height: 40px;
+    font-size: 15px;
 }
 
-.btn3 {
+.btn-group {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-group button {
+  width: 100%;
+}
+
+.btn1 .pay, .btn3 {
     font-size: 18px;
 }
 

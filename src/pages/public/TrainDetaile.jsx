@@ -73,8 +73,10 @@ function TrainDetaile() {
           <span>{detail.price.toLocaleString()}원</span>
         </div>
 
-        <button className="btn1">결제하기</button>
-        <button className="btn3">장바구니 담기</button>
+        <div className="btn-group">
+          <button className="btn1 pay">결제하기</button>
+          <button className="btn3">장바구니 담기</button>
+        </div>
       </div>
     </div>
   );
