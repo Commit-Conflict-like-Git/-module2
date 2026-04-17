@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'     //db 객체 얻기 위한 함수
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,5 +21,7 @@ const app = initializeApp(firebaseConfig);
 
 //firestore 라이브러리 사용을 위한 객체 가져오기
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const storage = getStorage(app);
 
 console.log(db);

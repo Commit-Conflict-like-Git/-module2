@@ -4,8 +4,8 @@
 }
 
 .role-select {
-    height: 40vh;
-    width: 300px;
+    height: 42vh;
+    width: 280px;
     border: solid 2px #705948;
     background: #FFFDFD;
     border-radius: 15px;
@@ -30,8 +30,9 @@
     margin-bottom: 15px;
 }
 
-.btn1, .btn2 {
+.role-select .btn1,.role-select .btn2 {
     font-size: 20px;
     width: 160px;
     height: 50px;
+    margin-top: 10px;
 }

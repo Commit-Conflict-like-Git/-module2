@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import SignupRoleSelect from './SignupRoleSelect';
 import SignupInfo from './SignupInfo';
-import SignupIdPwd from './SignupIdPwd';
 import SignupLicense from './SignupLicense';
 import SignupFinish from './SignupFinish';
+import { signupWithDetail } from '../../services/authService';
 
 
 function Signup() {
@@ -16,15 +16,26 @@ function Signup() {
         birth: '',
         phoneNumber: '',
         email: '',
-        pwd: ''
-        // 파일 이름, 경로
+        password: '',
+        passwordConfirm: '',
+        certificationFile: null
     })
 
-    const nextStep = () => {
+    const nextStep = async () => {
         if (formData.role === 'owner' && step === 1) {
-            setStep(3);
+            try {
+                await signupWithDetail(formData);
+                setStep(3);
+            } catch (error) {
+            console.error('회원가입 중 오류 발생', error);
+        }
         } else if (formData.role === 'trainer' && step === 2) {
-            setStep(3);
+            try {
+                await signupWithDetail(formData);
+                setStep(3);
+            } catch (error) {
+            console.error('회원가입 중 오류 발생', error);
+        }
         } else {
             setStep(step + 1);
         }

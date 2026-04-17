@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { checkEmail } from '../../services/authService'
 import '../../assets/css/signup.css'
 import '../../assets/css/signupPages/information.css'
 import '../../assets/css/button.css'
 
 function SignupInfo({onNext, formData, onFormData}) {
-    const isAllFilled = 
-        formData.name.trim() !== '' && 
-        formData.birth !== '' && 
-        formData.phoneNumber.trim() !== '';
+    // 이메일 중복여부 확인
+    const [isEmailChecked, setIsEmailChecked] = useState(false);
+    // 비밀번호 일치여부 확인
+    const isPasswordMatch = formData.password === formData.passwordConfirm;
 
     // 전화번호 하이픈 생성
     const handlePhoneChange = (e) => {
@@ -27,6 +28,39 @@ function SignupInfo({onNext, formData, onFormData}) {
             onFormData({ ...formData, phoneNumber: formattedValue });
         }
     };
+
+    const handleEmailCheck = async () => {
+        if (!formData.email.trim()){
+            alert("이메일입력");
+            return;
+        }
+        try {
+            const isDuplicated = await checkEmail(formData.email);
+            if (isDuplicated) {
+                alert("이미 사용중인 이메일입니다. ");
+                setIsEmailChecked(false);
+            } else {
+                setIsEmailChecked(true);
+            }
+        } catch (error) {
+            console.log("중복 확인 중 오류 발생")
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        setIsEmailChecked(false);
+        onFormData({...formData, email: e.target.value});
+    };
+    
+    const isAllFilled = 
+        formData.name.trim() !== '' && 
+        formData.birth !== '' && 
+        formData.phoneNumber.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        formData.password.trim() !== '' &&
+        formData.passwordConfirm.trim() !== '' &&
+        isEmailChecked &&
+        isPasswordMatch;
 
     const handleNext = () => {
         if (isAllFilled) {
@@ -76,6 +110,42 @@ function SignupInfo({onNext, formData, onFormData}) {
                         className='textbox'
                         value={formData.phoneNumber}
                         onChange={handlePhoneChange}
+                    />
+                </div>
+                <div className='input-row'>
+                    <label className='info-label'>이메일</label>
+                    <input
+                        type='email'
+                        placeholder='  이메일을 입력해 주세요.'
+                        className='textbox'
+                        value={formData.email}
+                        onChange={(e) => onFormData({...formData, email: e.target.value})}
+                    />
+                    <button 
+                        className='btn1'
+                        onClick={handleEmailCheck}
+                    >
+                        {isEmailChecked ? "확인됨" : "중복확인"}
+                    </button>
+                </div>
+                <div className='input-row'>
+                    <label className='info-label'>비밀번호</label>
+                    <input
+                        type='password'
+                        placeholder='  비밀번호를 입력해 주세요.'
+                        className='textbox'
+                        value={formData.password}
+                        onChange={(e) => onFormData({...formData, password: e.target.value})}
+                    />
+                </div>
+                <div className='input-row'>
+                    <label className='info-label'>비밀번호 확인</label>
+                    <input
+                        type='password'
+                        placeholder='  비밀번호를 다시 입력해주세요.'
+                        className='textbox'
+                        value={formData.passwordConfirm || ''}
+                        onChange={(e) => onFormData({...formData, passwordConfirm: e.target.value})}
                     />
                 </div>
             </div>

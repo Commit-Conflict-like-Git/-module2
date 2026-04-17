@@ -5,8 +5,12 @@
     padding: 30px;
     border-radius: 20px;
     margin: 30px auto;
-    overflow: hidden;
+    overflow-y: auto;
     justify-content: center;
+}
+
+.inner-body::-webkit-scrollbar{
+    display: none;
 }
 
 .paw {      
@@ -18,28 +22,4 @@
     font-size: 32px;
     font-weight: bold;
     margin-left: 10px;
-}
-
-/* 훈련사 파일 업로드 */
-.file-upload {
-    display: flex;
-    align-items: center;
-}
-
-.upload-name {
-    border: solid 1px #705948;
-}
-
-.file-upload label {
-    background: #C2AA84;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.file-upload label:hover {
-    background: #A59170;
-}
-
-#file-input {
-  display: none;
 }
