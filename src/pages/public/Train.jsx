@@ -16,23 +16,19 @@ function Train() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "trainings"));
+      try {
+        const querySnapshot = await getDocs(collection(db, "trainings"));
 
-      const data = querySnapshot.docs.map((doc) => {
-        const d = doc.data();
-
-        return {
+        const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          trainTitle: d.title,
-          trainDescription: d.description,
-          trainImg: d.trainImg,
-          price: d.price,
-        };
-      });
+          ...doc.data(),
+        }));
 
-      console.log(querySnapshot.docs); // 확인용
-
-      setTrainingData(data);
+        console.log("불러온 데이터:", data);
+        setTrainingData(data);
+      } catch (error) {
+        console.error("데이터를 불러오는 중 에러 발생:", error);
+      }
     };
 
     fetchData();
