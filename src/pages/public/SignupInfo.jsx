@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { checkEmail } from '../../services/authService'
+import Modal from '../../components/public/modalOneBtn'
 import '../../assets/css/signup.css'
 import '../../assets/css/signupPages/information.css'
 import '../../assets/css/button.css'
@@ -9,6 +10,9 @@ function SignupInfo({onNext, formData, onFormData}) {
     const [isEmailChecked, setIsEmailChecked] = useState(false);
     // 비밀번호 일치여부 확인
     const isPasswordMatch = formData.password === formData.passwordConfirm;
+    // 모달
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalMsg, setModalMsg] = useState('');
 
     // 전화번호 하이픈 생성
     const handlePhoneChange = (e) => {
@@ -37,7 +41,8 @@ function SignupInfo({onNext, formData, onFormData}) {
         try {
             const isDuplicated = await checkEmail(formData.email);
             if (isDuplicated) {
-                alert("이미 사용중인 이메일입니다. ");
+                setModalMsg("동일한 이메일이 이미 존재합니다.")
+                setIsModalOpen(true);
                 setIsEmailChecked(false);
             } else {
                 setIsEmailChecked(true);
@@ -70,6 +75,12 @@ function SignupInfo({onNext, formData, onFormData}) {
     
     return (
         <div className='inner-body'>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                modalText={modalMsg} 
+            />
+
             <div className="title-group">
                 <img src="src/assets/img/paw.svg" alt="소제목" className="paw"/>
                 <div className="title">회원가입</div>
