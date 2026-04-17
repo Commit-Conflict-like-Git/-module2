@@ -1,7 +1,7 @@
 .container{
     display: flex;
     width: 80%;
-    margin: 30px auto;
+    margin: 20px auto;
     gap: 10px;
 }
 
@@ -51,6 +51,7 @@
     background-color: #FFFDF9;
     overflow: hidden;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 hr {
@@ -60,8 +61,9 @@ hr {
 }
 
 .train-content {
-    margin-top: 30px;
+    margin: 20px 0px;
     font-size: 20px;
+    white-space: pre-line;  /* 줄바꿈 적용 */
 }
 
 .review-box {
@@ -82,7 +84,7 @@ hr {
 .review-content {
     border-bottom: 1px solid #D9D9D9;
     font-size: 20px;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 
@@ -104,14 +106,14 @@ hr {
 .notice-content {
     border-bottom: 1px solid #D9D9D9;
     font-size: 20px;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 /* 훈련 시간 */
 .timeTitle {
     font-size: 18px;
     font-weight: bold;
-}
+} 
 
 .trainTime {
     font-size: 16px;
@@ -142,8 +144,12 @@ hr {
 }
 
 .review-box .btn1, .notice-box .btn1 {
-    height: 40px;
+    height: 30px;
+    width: 100px;
     font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-group {
@@ -155,10 +161,6 @@ hr {
 
 .btn-group button {
   width: 100%;
-}
-
-.btn1 .pay, .btn3 {
-    font-size: 18px;
 }
 
 span {
