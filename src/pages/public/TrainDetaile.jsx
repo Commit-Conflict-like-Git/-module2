@@ -60,6 +60,7 @@ function TrainDetaile() {
             <div className="notice-title">훈련 공지사항</div>
             <button className="btn1">더보기</button>
           </div>
+
           <div className="notice-content">dddd</div>
           <div className="notice-content">dddd</div>
           <div className="notice-content">dddd</div>
