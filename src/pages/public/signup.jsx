@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { signupWithDetail } from '../../services/authService';
 import SignupRoleSelect from './SignupRoleSelect';
 import SignupInfo from './SignupInfo';
 import SignupLicense from './SignupLicense';
@@ -45,7 +46,6 @@ function Signup() {
     return (
         <div className='signup-container'>
             {step === 0 && <SignupRoleSelect formData={formData} onFormData={setFormData} onNext={nextStep}/>}
-
             {step === 1 && <SignupInfo formData={formData} onFormData={setFormData} onNext={nextStep}/>}
 
             {/* 훈련사 자격증 */}

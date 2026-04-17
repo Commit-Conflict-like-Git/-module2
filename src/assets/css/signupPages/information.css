@@ -5,9 +5,9 @@ label {
 .content-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* 전체를 중앙으로 */
+    align-items: center;
     margin-top: 50px;
-    gap: 20px; /* 줄 간격 */
+    gap: 30px;
 }
 
 .info-label {

@@ -27,11 +27,21 @@ function SignupInfo({onNext, formData, onFormData}) {
             formattedValue = value.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
         }
 
-        // 최대 13자(010-1234-5678)까지만 저장
+        // 최대 13자까지 저장
         if (formattedValue.length <= 13) {
             onFormData({ ...formData, phoneNumber: formattedValue });
         }
     };
+    
+    const isAllFilled = 
+        formData.name.trim() !== '' && 
+        formData.birth !== '' && 
+        formData.phoneNumber.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        formData.password.trim() !== '' &&
+        formData.passwordConfirm.trim() !== '' &&
+        isEmailChecked &&
+        isPasswordMatch;
 
     const handleEmailCheck = async () => {
         if (!formData.email.trim()){
@@ -165,10 +175,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                 <button
                     onClick={handleNext}
                     className='btn1'
-                    style={{
-                        background: isAllFilled ? '#C2AA84' : '#BDBDBD',
-                        cursor: isAllFilled ? 'pointer' : 'not-allowed'
-                    }}
+                    disabled={!isAllFilled}
                 > 다음 &gt; </button>
             </div>
         </div>
