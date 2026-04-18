@@ -1,0 +1,122 @@
+/* 전체 배경 레이아웃 */
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+/* 상단 '결제하기' 타이틀 */
+.payment-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* 흰색 메인 카드 박스 */
+.payment-card-wrapper {
+  background-color: #FFFDF9;
+  width: 80%;
+  height: 65vh;
+  border-radius: 20px; /* 둥근 모서리 */
+  padding: 60px 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* 왼쪽: 항목들이 쌓이는 컨테이너 */
+.left-container {
+  flex: 3;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+/* 개별 아이템 내부 그리드 배치 */
+.payment-item {
+  display: grid;
+  grid-template-columns: 140px 1fr; /* 라벨 너비 고정 */
+  row-gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* 라벨 (훈련명, 훈련사 등) */
+.info-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 텍스트 값 */
+.info-value {
+  font-size: 18px;
+}
+
+/* 강아지 선택 셀렉트 */
+.dog-select {
+    width: 120px;
+    padding: 8px 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #FFFDF9;
+    cursor: pointer;
+    outline: none;
+    color: #6B5949;
+}
+
+option {
+     background-color: transparent;
+}
+
+/* 항목 간 구분선 */
+.item-line {
+  grid-column: span 2; /* 그리드 2칸 모두 차지 */
+  border-top: 1px solid #d9d9dd;
+  margin-top: 10px;
+}
+
+/* 오른쪽: 총액과 결제 버튼 */
+.right-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* 아래쪽으로 밀착 */
+  /* align-items:flex-start; */
+}
+
+.total-price-box {
+  width: 100%;
+  border-bottom: 2px solid #6B5949; /* 하단 굵은 선 */
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+
+.total-label {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.total-price {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 결제 하기 버튼 */
+.right-container .btn1 {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 스크롤바 디자인 */
+.left-container::-webkit-scrollbar {
+  width: 6px;
+}
+.left-container::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+}

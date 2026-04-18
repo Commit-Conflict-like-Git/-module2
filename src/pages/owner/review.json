@@ -1,0 +1,102 @@
+[
+  {
+    "trainId": "tr1",
+    "reviewId": "review01",
+    "uid": "owner_user_01",
+    "role": "OWNER",
+    "reviewTitle": "산책이 더 이상 전쟁이 아니에요!",
+    "reviewContent": "항상 줄을 당기며 앞서나가는 우리 아이 때문에 산책 한 번 다녀오면 어깨가 너무 아팠는데, 훈련사님의 '힐' 보행법 수업 이후로 제 보폭에 맞춰 걷기 시작했어요. 이제는 서로 눈을 마주치며 즐겁게 산책합니다. 정말 감사합니다!",
+    "uploadDate": "2026-05-10",
+    "updateDate": "2026-05-12(수정)"
+  },
+  {
+    "trainId": "tr2",
+    "reviewId": "review02",
+    "uid": "owner_user_02",
+    "role": "OWNER",
+    "reviewTitle": "배변 실수가 눈에 띄게 줄었습니다.",
+    "reviewContent": "이사를 오면서 갑자기 배변 실수가 잦아져 스트레스가 많았는데, 환경 진단부터 다시 해주신 덕분에 원인을 찾았어요. 배변판 위치 하나 바꿨을 뿐인데 아이가 편안하게 볼일을 보네요. 이론부터 실습까지 최고였어요.",
+    "uploadDate": "2026-05-15",
+    "updateDate": ""
+  },
+  {
+    "trainId": "tr4",
+    "reviewId": "review03",
+    "uid": "owner_user_03",
+    "role": "OWNER",
+    "reviewTitle": "분리불안, 기다림의 미학을 배웠어요.",
+    "reviewContent": "문밖을 나가기만 하면 하울링을 해서 이웃 눈치가 많이 보였는데, 노즈워크 활용법과 켄넬 교육을 꾸준히 하니 이제 제가 나가도 잠을 자거나 얌전히 기다려요. 보호자의 인내심이 얼마나 중요한지 깨달았습니다.",
+    "uploadDate": "2026-05-20",
+    "updateDate": "2026-05-21(수정)"
+  },
+  {
+    "trainId": "tr7",
+    "reviewId": "review04",
+    "uid": "owner_user_04",
+    "role": "OWNER",
+    "reviewTitle": "공격성 교정, 희망을 보았습니다.",
+    "reviewContent": "다른 강아지만 보면 달려들어서 산책을 포기하려 했어요. 한명훈 훈련사님이 아이의 공포심을 먼저 이해해 주시고 천천히 둔감화 훈련을 진행해 주신 덕분에 이제는 5미터 거리에서도 짖지 않고 지나갈 수 있게 됐어요.",
+    "uploadDate": "2026-05-25",
+    "updateDate": ""
+  },
+  {
+    "trainId": "tr8",
+    "reviewId": "review05",
+    "uid": "owner_user_05",
+    "role": "OWNER",
+    "reviewTitle": "퍼피 클래스 덕분에 초보 엄마 탈출!",
+    "reviewContent": "강아지를 처음 키워서 모든 게 막막했는데, 사회화 시기에 필요한 모든 것을 배웠습니다. 발톱 깎는 걸 너무 싫어했는데 이제는 간식 주면서 즐겁게 관리해주고 있어요. 어릴 때 교육이 왜 중요한지 알겠더라고요.",
+    "uploadDate": "2026-05-28",
+    "updateDate": ""
+  },
+  {
+    "trainId": "tr5",
+    "reviewId": "review06",
+    "uid": "owner_user_06",
+    "role": "OWNER",
+    "reviewTitle": "기본 복종 훈련이 이렇게 재밌을 줄이야!",
+    "reviewContent": "'앉아' 하나에도 아이가 즐거워하는 모습이 신기해요. 긍정 강화 교육이라 그런지 아이가 저랑 눈 맞추는 걸 너무 좋아하게 됐어요. 일상 예절이 잡히니 집안 분위기가 훨씬 화목해졌습니다.",
+    "uploadDate": "2026-06-01",
+    "updateDate": "2026-06-02(수정)"
+  },
+  {
+    "trainId": "tr9",
+    "reviewId": "review07",
+    "uid": "owner_user_07",
+    "role": "OWNER",
+    "reviewTitle": "어질리티 수업 후 자신감이 뿜뿜!",
+    "reviewContent": "소심했던 우리 아이가 터널을 통과하고 허들을 넘으면서 표정이 밝아졌어요. 에너지를 제대로 발산해서 그런지 집에 오면 떡실신해서 잘 자네요. 보호자와의 유대감이 깊어지는 최고의 스포츠 수업입니다.",
+    "uploadDate": "2026-06-05",
+    "updateDate": ""
+  },
+  {
+    "trainId": "tr6",
+    "reviewId": "review08",
+    "uid": "owner_user_01",
+    "role": "OWNER",
+    "reviewTitle": "클리커 소리에 집중하는 모습이 대견해요.",
+    "reviewContent": "말보다 명확한 소리로 소통하니 아이가 훨씬 빨리 알아들어요. 복잡한 개인기도 클리커 하나로 뚝딱 배우는 게 너무 신기합니다. 교육 방식이 과학적이고 체계적이라 믿음이 갑니다.",
+    "uploadDate": "2026-06-10",
+    "updateDate": ""
+  },
+  {
+    "trainId": "tr10",
+    "reviewId": "review09",
+    "uid": "owner_user_08",
+    "role": "OWNER",
+    "reviewTitle": "다견 가정의 싸움이 멈췄습니다.",
+    "reviewContent": "첫째와 둘째가 간식만 보면 싸워서 늘 긴장 상태였는데, 공간 분리와 평등한 보상법을 배운 후로 서로의 영역을 존중하기 시작했어요. 훈련사님의 예리한 진단 덕분에 집안에 평화가 찾아왔습니다.",
+    "uploadDate": "2026-06-12",
+    "updateDate": "2026-06-13(수정)"
+  },
+  {
+    "trainId": "tr3",
+    "reviewId": "review10",
+    "uid": "owner_user_09",
+    "role": "OWNER",
+    "reviewTitle": "산책 매너의 정석을 배웠습니다.",
+    "reviewContent": "단순히 못 가게 막는 게 아니라, 저를 따라오는 것이 더 즐겁다는 걸 알게 해주는 훈련이었어요. 매너 있는 반려견으로 거듭난 것 같아 뿌듯합니다. 박지성 훈련사님 강력 추천드려요!",
+    "uploadDate": "2026-06-15",
+    "updateDate": ""
+  }
+]

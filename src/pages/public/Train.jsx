@@ -1,7 +1,6 @@
 import "../../assets/css/train.css";
 import paw from "../../assets/img/paw.svg";
 import { useNavigate } from "react-router-dom";
-import trainData from "../../pages/owner/trainData.json";
 import TrainCard from "../owner/TrainCard";
 import SearchBar from "./SearchBar";
 import "../../assets/css/searchBar.css";

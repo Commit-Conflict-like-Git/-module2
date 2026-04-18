@@ -1,0 +1,27 @@
+.inner-body.finish {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.finish-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.inner-body .welcome {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.finish-content .btn1 {
+    margin: 15px;
+    font-size: 15px;
+    width: 120px;
+    height: 40px;
+}

@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'suite';
+    src: url(../font/SUITE-Variable.ttf);
+}
+
+.license-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 9vh;
+    text-align: center;
+}
+
+.file-include {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.authorize {
+    font-size: 21px;
+    font-weight: 600;
+    color: #C2AA84;
+    margin-bottom: 35px;
+}
+
+.file-upload {
+    width: 100%;
+    gap: 15px;
+    justify-content: center;
+    display: flex;
+}
+
+.upload-name {
+    border: solid 1px #705948;
+    border-radius: 5px;
+    background: #FFFDFD;
+    width: 35%;
+    height: 40px;
+    font-family: 'suite';
+    font-size: 15px;
+    color: #C2AA84
+}
+
+.file-upload .upload-button {
+    background: #C2AA84;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'suite';
+}
+
+.file-upload .upload-button:hover {
+    background: #A59170;
+}
+
+#file-input {
+  display: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 40px;
+    padding-right: 90px;
+}

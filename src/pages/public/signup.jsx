@@ -4,6 +4,7 @@ import SignupRoleSelect from './SignupRoleSelect';
 import SignupInfo from './SignupInfo';
 import SignupLicense from './SignupLicense';
 import SignupFinish from './SignupFinish';
+import { signupWithDetail } from '../../services/authService';
 
 
 function Signup() {
@@ -19,7 +20,6 @@ function Signup() {
         password: '',
         passwordConfirm: '',
         certificationFile: null
-        // 파일 이름, 경로
     })
 
     const nextStep = async () => {
@@ -28,15 +28,15 @@ function Signup() {
                 await signupWithDetail(formData);
                 setStep(3);
             } catch (error) {
-                console.log('회원가입 중 오류 발생');
-            }         
+            console.error('회원가입 중 오류 발생', error);
+        }
         } else if (formData.role === 'trainer' && step === 2) {
             try {
                 await signupWithDetail(formData);
                 setStep(3);
             } catch (error) {
-                console.log('회원가입 중 오류 발생');
-            }   
+            console.error('회원가입 중 오류 발생', error);
+        }
         } else {
             setStep(step + 1);
         }

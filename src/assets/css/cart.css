@@ -1,0 +1,144 @@
+/* 전체 컨테이너 배경 */
+.cart-container {
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+    gap: 10px;
+}
+
+/* 왼쪽 섹션 */
+.cart-left {
+    height: 69vh;
+    width: 70%;
+    background-color: #FFFDF9;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cart-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.cart-controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.cart-controls button {
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cart-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.item-info-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.item-details p { margin: 5px 0; }
+.item-name { font-weight: bold; font-size: 16px; }
+.item-trainer, .item-price { font-size: 14px; }
+
+.btn-detail-view {
+  background-color: #BDBDBD;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* 오른쪽 결제 섹션 */
+.cart-right {
+    height: 69vh;
+    width: 30%;
+    border-radius: 20px;
+    background-color: #FFFDF9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.select-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.select-header .btn2 {
+  padding: 8px 20px;
+  font-size: 15px;
+}
+
+.select-item {
+  border: 1px solid #d9d9d9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-item-name { font-size: 14px; font-weight: bold; }
+.select-item-trainer { font-size: 12px; color: #888;margin-top: 5px; }
+.select-item-price { font-size: 14px; color: #bbb; }
+
+.select-item-side .btn2 {
+  padding: 5px 15px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.total-box {
+  margin-top: 50px;
+  text-align: right;
+  border-top: 1px solid #d9d9d9;
+  padding-top: 20px;
+}
+
+.total-label { font-size: 16px; }
+.total-amount { font-size: 20px; font-weight: bold; margin-left: 10px; }
+
+.total-box .btn1 {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+.loading {
+  background-color: #FFFDF9;
+  border-radius: 20px;
+  padding: 50px;
+  width: 60vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px auto;
+  font-size: 20px;
+}

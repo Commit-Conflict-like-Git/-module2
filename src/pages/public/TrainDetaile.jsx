@@ -1,15 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/css/trainDetaile.css";
 import "../../assets/css/button.css";
-import trainData from "../../pages/owner/trainData.json";
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 function TrainDetaile() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [detail, setDetail] = useState(null);
 
+  // 1. 훈련 정보 불러오기
   useEffect(() => {
     const fetchDetail = async () => {
       const docRef = doc(db, "trainings", id);
@@ -24,6 +25,31 @@ function TrainDetaile() {
   }, [id]);
 
   if (!detail) return <div>로딩중...</div>;
+  // 2. 장바구니에 추가하기
+  // const handleAddToCart = async () => {};
+  const handleAddToCart = () => {
+    console.log("장바구니 클릭");
+  };
+
+  const handleToPayment = () => {
+    navigate("/payment", {
+      state: {
+        // selectedItems를 현재 보고 있는 훈련 1개만 배열에 담아서 보냄
+        selectedItems: [
+          {
+            id: id,
+            title: detail.trainTitle,
+            trainer: detail.trainerName,
+            price: detail.price,
+            day: detail.date,
+            location: detail.trainPlace,
+          },
+        ],
+        totalAmount: detail.price,
+      },
+    });
+    console.log("결제하기 버튼 클릭 - 데이터 전달 완료");
+  };
 
   return (
     <div className="container">
@@ -100,12 +126,16 @@ function TrainDetaile() {
 
         <div className="moneyTitle">비용: </div>
         <div className="money">
-          <span>{detail.price.toLocaleString()}원</span>
+          <span>{detail.price?.toLocaleString()}원</span>
         </div>
 
         <div className="btn-group">
-          <button className="btn1 pay">결제하기</button>
-          <button className="btn3">장바구니 담기</button>
+          <button className="btn1 pay" onClick={handleToPayment}>
+            결제하기
+          </button>
+          <button className="btn3" onClick={handleAddToCart}>
+            장바구니 담기
+          </button>
         </div>
       </div>
     </div>
