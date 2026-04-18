@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/css/signup.css'
+import '../../assets/css/signupPages/signupFinish.css'
 import '../../assets/css/button.css'
 
 function SignupFinish({role}) {
@@ -17,17 +18,22 @@ function SignupFinish({role}) {
     };
 
     return (
-        <div className='inner-body'>
+        <div className='inner-body finish'>
             <div className="title-group">
                 <img src="src/assets/img/paw.svg" alt="소제목" className="paw"/>
                 <div className="title">회원가입</div>
             </div>
-            <p>회원가입이 완료되었습니다. </p>
-            <p>{content.hello}</p>
+            <div className='finish-content'>
+                <p className='welcome'>회원가입이 완료되었습니다. </p>
+                <p className='welcome'>{content.hello}</p>
 
-            <button onClick={() => navigate(content.btnPath)}>
-                {content.btnText}
-            </button>
+                <button
+                    onClick={() => navigate(content.btnPath)}
+                    className='btn1'
+                >
+                    {content.btnText}
+                </button>
+            </div>
         </div>
     );
 }

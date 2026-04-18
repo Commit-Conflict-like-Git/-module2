@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { checkEmail } from '../../services/authService'
+import Modal from '../../components/public/modalOneBtn'
 import '../../assets/css/signup.css'
 import '../../assets/css/signupPages/information.css'
 import '../../assets/css/button.css'
 
 function SignupInfo({onNext, formData, onFormData}) {
+    // 이메일 중복여부 확인
+    const [isEmailChecked, setIsEmailChecked] = useState(false);
     // 비밀번호 일치여부 확인
     const isPasswordMatch = formData.password === formData.passwordConfirm;
-
-    // 이메일 일치 코드 쓰고 지우기!!!!!!!!!!!!!!!!!!!!!!!!!
-    const isEmailChecked = true;
+    // 모달
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalMsg, setModalMsg] = useState('');
 
     // 전화번호 하이픈 생성
     const handlePhoneChange = (e) => {
@@ -39,6 +43,40 @@ function SignupInfo({onNext, formData, onFormData}) {
         isEmailChecked &&
         isPasswordMatch;
 
+    const handleEmailCheck = async () => {
+        if (!formData.email.trim()){
+            alert("이메일입력");
+            return;
+        }
+        try {
+            const isDuplicated = await checkEmail(formData.email);
+            if (isDuplicated) {
+                setModalMsg("동일한 이메일이 이미 존재합니다.")
+                setIsModalOpen(true);
+                setIsEmailChecked(false);
+            } else {
+                setIsEmailChecked(true);
+            }
+        } catch (error) {
+            console.log("중복 확인 중 오류 발생")
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        setIsEmailChecked(false);
+        onFormData({...formData, email: e.target.value});
+    };
+    
+    const isAllFilled = 
+        formData.name.trim() !== '' && 
+        formData.birth !== '' && 
+        formData.phoneNumber.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        formData.password.trim() !== '' &&
+        formData.passwordConfirm.trim() !== '' &&
+        isEmailChecked &&
+        isPasswordMatch;
+
     const handleNext = () => {
         if (isAllFilled) {
             onNext();
@@ -47,6 +85,12 @@ function SignupInfo({onNext, formData, onFormData}) {
     
     return (
         <div className='inner-body'>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                modalText={modalMsg} 
+            />
+
             <div className="title-group">
                 <img src="src/assets/img/paw.svg" alt="소제목" className="paw"/>
                 <div className="title">회원가입</div>
@@ -98,7 +142,12 @@ function SignupInfo({onNext, formData, onFormData}) {
                         value={formData.email}
                         onChange={(e) => onFormData({...formData, email: e.target.value})}
                     />
-                    <button className='btn1'>중복확인</button>
+                    <button 
+                        className='btn1'
+                        onClick={handleEmailCheck}
+                    >
+                        {isEmailChecked ? "확인됨" : "중복확인"}
+                    </button>
                 </div>
                 <div className='input-row'>
                     <label className='info-label'>비밀번호</label>

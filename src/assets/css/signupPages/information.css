@@ -19,7 +19,7 @@ label {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 input::placeholder {
@@ -65,7 +65,14 @@ input::placeholder {
     justify-content: flex-end;
     width: 100%;
     margin-top: 40px;
-    padding-right: 40px;
+    padding-right: 90px;
+}
+
+/* 다음 > 버튼 */
+.button-container .btn1 {
+    font-size: 15px;
+    width: 120px;
+    height: 40px;
 }
 
 .button-container .btn1:not(:disabled) {
@@ -80,4 +87,12 @@ input::placeholder {
 .button-container .btn1:disabled {
     background-color: #BDBDBD;
     cursor: not-allowed;
+}
+
+/* 중복확인 버튼 */
+.input-row .btn1 {
+    font-size: 15px;
+    width: 90px;
+    height: 40px;
+    margin-left: 15px;
 }
