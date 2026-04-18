@@ -67,16 +67,6 @@ function SignupInfo({onNext, formData, onFormData}) {
         onFormData({...formData, email: e.target.value});
     };
     
-    const isAllFilled = 
-        formData.name.trim() !== '' && 
-        formData.birth !== '' && 
-        formData.phoneNumber.trim() !== '' &&
-        formData.email.trim() !== '' &&
-        formData.password.trim() !== '' &&
-        formData.passwordConfirm.trim() !== '' &&
-        isEmailChecked &&
-        isPasswordMatch;
-
     const handleNext = () => {
         if (isAllFilled) {
             onNext();

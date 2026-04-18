@@ -4,7 +4,6 @@ import SignupRoleSelect from './SignupRoleSelect';
 import SignupInfo from './SignupInfo';
 import SignupLicense from './SignupLicense';
 import SignupFinish from './SignupFinish';
-import { signupWithDetail } from '../../services/authService';
 
 
 function Signup() {
