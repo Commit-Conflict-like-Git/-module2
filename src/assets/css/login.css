@@ -1,0 +1,84 @@
+.inner-body.login-page {
+    display: flex;
+    flex-direction: column;
+    height: 69vh;   
+    padding: 30px;     
+    box-sizing: border-box;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;  
+    padding-bottom: 10vh;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    background: none;
+}
+
+.login-email, .login-password {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+
+    border: solid #705948 1px;
+    background: #FFFDFD;
+    border-radius: 8px;
+    width: 80%;
+    height: 45px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.login-email-input, .login-password-input {
+    border: none;
+    background: none;
+    width: 70%;
+    height: 35px;
+}
+
+.login-email-input {margin-left: 15px;}
+.login-password-input {margin-left: 45px;}
+
+.login-container .btn1 {
+    width: 80%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.login-footer {
+    font-size: 16px;
+}
+
+.signup-link {
+    color: #7693B2;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.signup-link:hover {
+    font-weight: 700;
+}
+
+/* 경고 메시지 */
+.error-text {
+    color: #DB1616;
+    font-size: 13px;
+    margin-left: 20px;
+}
+
+.error {
+    width: 80%;
+    height: 23px;
+    align-items: flex-start;
+}

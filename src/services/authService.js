@@ -1,6 +1,7 @@
 import { auth, db, storage } from '../firebase/config.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc, collection, query, where, getDocs, serverTimestamp } from "firebase/firestore"
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc, collection, query, where, getDocs, serverTimestamp, getDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 export const checkEmail = async (email) => {
@@ -73,5 +74,27 @@ export const signupWithDetail = async (formData) => {
     } catch (error) {
         console.error('오류발생: ', error.code, error.message);
         throw error;
+    }
+}
+
+export const loginUser = async (email, password) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+
+            if (userData.status === 'disabled') {
+                throw {code: 'auth/user-disabled-custom'};
+            }
+            console.log(`[로그인 성공]`);
+        }
+
+        return user;
+    } catch (error) {
+        throw error
     }
 }
