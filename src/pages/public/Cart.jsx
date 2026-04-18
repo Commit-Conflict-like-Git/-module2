@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../assets/css/cart.css";
-import { useNavigate } from "react-router-dom";
+import { collection, deleteDoc, doc, getDocs, where } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 function Cart() {
   // 구조 파악을 위한 더미 데이터
@@ -25,25 +26,49 @@ function Cart() {
     },
   ]);
 
-  const navigate = useNavigate();
+  // 로그인 한 유저 (예: auth.currentUser.uid)
+  const userUid = "user_uid_1";
 
-  // 총 금액 계산
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+  // 1. Firebase에서 내 장바구니 데이터만 가져오기
+  useEffect(() => {
+    const fetchCart = async () => {
+      const q = query(collection(db, "carts"), where("uid", "==", userUid));
+      const querySnapshot = await getDocs(q);
+      const items = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setCartItems(items);
+    };
+    fetchCart();
+  }, [userUid]);
 
-  const handlePayment = () => {
+  // 2. 총 금액 계산 (데이터 구조의 price 기준)
+  const totalAmount = cartItems.reduce(
+    (sum, item) => sum + (item.price || 0),
+    0,
+  );
+
+  // 3. 결제 페이지로 이동
+  const handleToPayment = () => {
     if (cartItems.length === 0) {
       alert("결제할 항목이 없습니다.");
       return;
     }
-
-    // 결제 페이지로 이동
     navigate("/payment", {
       state: {
         selectedItems: cartItems,
-        totalAmount: totalPrice,
+        totalAmount: totalAmount,
       },
     });
   };
+
+  // 4. 삭제
+  const removeItem = async (id) => {
+    await deleteDoc(doc(db, "carts", id));
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="cart-container">
       {/* <div className="cart-wrapper"> */}

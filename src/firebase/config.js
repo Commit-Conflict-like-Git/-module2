@@ -22,7 +22,6 @@ const app = initializeApp(firebaseConfig);
 //firestore 라이브러리 사용을 위한 객체 가져오기
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const auth = getAuth(app);
 export const storage = getStorage(app);
 
 // console.log(db);
