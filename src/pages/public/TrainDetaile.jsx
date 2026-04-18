@@ -13,28 +13,42 @@ function TrainDetaile() {
   // 1. 훈련 정보 불러오기
   useEffect(() => {
     const fetchDetail = async () => {
-      const docRef = doc(db, "trainings", id);
+      const docRef = doc(db, "training", id);
       const docSnap = await getDoc(docRef);
-
       if (docSnap.exists()) {
         setDetail(docSnap.data());
       }
     };
-
     fetchDetail();
   }, [id]);
 
-  if (!detail) return <div>로딩중...</div>;
   // 2. 장바구니에 추가하기
-  // const handleAddToCart = async () => {};
-  const handleAddToCart = () => {
-    console.log("장바구니 클릭");
+  const handleAddToCart = async () => {
+    if (!detail) return;
+
+    const userUid = "user_uid_1";
+
+    const cartItem = {
+      uid: userUid,
+      trainId: id,
+      trainTitle: detail.trainTitle,
+      userName: detail.trainerName,
+      price: detail.price,
+    };
+
+    try {
+      await addDoc(collection(db, "carts"), cartItem);
+      alert("장바구니에 추가되었습니다!");
+    } catch (error) {
+      console.error("Firebase 저장 에러: ", error);
+    }
   };
+
+  if (!detail) return <div>로딩중...</div>;
 
   const handleToPayment = () => {
     navigate("/payment", {
       state: {
-        // selectedItems를 현재 보고 있는 훈련 1개만 배열에 담아서 보냄
         selectedItems: [
           {
             id: id,
