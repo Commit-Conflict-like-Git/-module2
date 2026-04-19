@@ -8,6 +8,7 @@ import TrainDetaile from "../pages/public/TrainDetaile";
 import Login from "../pages/public/Login";
 import Cart from "../pages/public/Cart";
 import Payment from "../pages/public/Payment";
+import TrainPost from "../pages/trainer/TrainPost";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         path: "Payment",
         element: <Payment />,
       },
+      {
+        path: "trainer/post",
+        element: <TrainPost />
+      }
     ],
   },
 ]);
