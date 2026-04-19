@@ -1,21 +1,21 @@
 /* 전체 컨테이너 배경 */
 .cart-container {
-    display: flex;
-    width: 80%;
-    margin: 20px auto;
-    gap: 10px;
+  display: flex;
+  width: 80%;
+  margin: 20px auto;
+  gap: 10px;
 }
 
 /* 왼쪽 섹션 */
 .cart-left {
-    height: 69vh;
-    width: 70%;
-    background-color: #FFFDF9;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    overflow-y: auto;
+  height: 69vh;
+  width: 70%;
+  background-color: #FFFDF9;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .cart-title {
@@ -52,9 +52,20 @@
   gap: 15px;
 }
 
-.item-details p { margin: 5px 0; }
-.item-name { font-weight: bold; font-size: 16px; }
-.item-trainer, .item-price { font-size: 14px; }
+.item-details p {
+  margin: 5px 0;
+}
+
+.item-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.item-trainer,
+.item-price {
+  font-size: 14px;
+  color:#888
+}
 
 .btn-detail-view {
   background-color: #BDBDBD;
@@ -65,17 +76,31 @@
   border-radius: 10px;
   cursor: pointer;
 }
+   
+.empty-msg {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  height: 30vh;
+  width: 30vw;
+}
 
 /* 오른쪽 결제 섹션 */
 .cart-right {
-    height: 69vh;
-    width: 30%;
-    border-radius: 20px;
-    background-color: #FFFDF9;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  height: 69vh;
+  width: 30%;
+  border-radius: 20px;
+  background-color: #FFFDF9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.select-list {
+  overflow-y: auto;
 }
 
 .select-header {
@@ -87,7 +112,7 @@
   font-weight: bold;
 }
 
-.select-header .btn2 {
+.select-list .btn2 {
   padding: 8px 20px;
   font-size: 15px;
 }
@@ -101,13 +126,25 @@
   justify-content: space-between;
 }
 
-.select-item-name { font-size: 14px; font-weight: bold; }
-.select-item-trainer { font-size: 12px; color: #888;margin-top: 5px; }
-.select-item-price { font-size: 14px; color: #bbb; }
+.select-item-name {
+  font-size: 14px;
+  font-weight: bold;
+}
 
-.select-item-side .btn2 {
-  padding: 5px 15px;
+.select-item-trainer {
   font-size: 12px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.select-item-price {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.select-list .btn2 {
+  padding: 10px 15px;
+  font-size: 14px;
   margin-top: 10px;
 }
 
@@ -118,8 +155,15 @@
   padding-top: 20px;
 }
 
-.total-label { font-size: 16px; }
-.total-amount { font-size: 20px; font-weight: bold; margin-left: 10px; }
+.total-label {
+  font-size: 16px;
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
 
 .total-box .btn1 {
   width: 100%;
@@ -127,18 +171,4 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: auto;
-  cursor: pointer;
-}
-
-.loading {
-  background-color: #FFFDF9;
-  border-radius: 20px;
-  padding: 50px;
-  width: 60vw;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 80px auto;
-  font-size: 20px;
 }

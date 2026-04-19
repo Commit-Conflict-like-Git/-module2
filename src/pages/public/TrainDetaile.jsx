@@ -3,71 +3,82 @@ import "../../assets/css/trainDetaile.css";
 import "../../assets/css/button.css";
 import { useEffect, useState } from "react";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { db, auth } from "../../firebase/config";
+import ModalOneBtn from "../../components/public/modalOneBtn";
 
 function TrainDetaile() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [detail, setDetail] = useState(null);
+  const [item, setItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState("");
 
-  // 1. 훈련 정보 불러오기
   useEffect(() => {
     const fetchDetail = async () => {
-      const docRef = doc(db, "training", id);
-      const docSnap = await getDoc(docRef);
+      const docSnap = await getDoc(doc(db, "trainings", id));
       if (docSnap.exists()) {
-        setDetail(docSnap.data());
+        setItem(docSnap.data());
       }
     };
     fetchDetail();
   }, [id]);
 
-  // 2. 장바구니에 추가하기
+  // 장바구니 추가 로직
   const handleAddToCart = async () => {
-    if (!detail) return;
+    if (!item) return;
+    const user = auth.currentUser;
 
-    const userUid = "user_uid_1";
+    if (!user) {
+      setModalMsg("로그인이 필요합니다.");
+      setIsModalOpen(true);
+      return;
+    }
 
     const cartItem = {
-      uid: userUid,
+      uid: user.uid,
       trainId: id,
-      trainTitle: detail.trainTitle,
-      userName: detail.trainerName,
-      price: detail.price,
+      trainTitle: item.trainTitle,
+      trainerName: item.trainerName,
+      price: item.price,
+      date: item.date,
+      trainPlace: item.trainPlace,
     };
 
     try {
       await addDoc(collection(db, "carts"), cartItem);
-      alert("장바구니에 추가되었습니다!");
+      setModalMsg("장바구니에 훈련이 추가되었습니다.");
+      setIsModalOpen(true);
     } catch (error) {
-      console.error("Firebase 저장 에러: ", error);
+      console.error("장바구니 저장 에러: ", error);
+      setModalMsg("장바구니 담기에 실패했습니다. 다시 시도해주세요.");
+      setIsModalOpen(true);
     }
   };
 
-  if (!detail) return <div>로딩중...</div>;
-
   const handleToPayment = () => {
+    if (!item) return;
     navigate("/payment", {
       state: {
         selectedItems: [
           {
-            id: id,
-            title: detail.trainTitle,
-            trainer: detail.trainerName,
-            price: detail.price,
-            day: detail.date,
-            location: detail.trainPlace,
+            id: null,
+            trainId: id,
+            trainTitle: item.trainTitle,
+            trainerName: item.trainerName,
+            price: item.price,
+            date: item.date,
+            trainPlace: item.trainPlace,
           },
         ],
-        totalAmount: detail.price,
+        totalAmount: item.price,
       },
     });
-    console.log("결제하기 버튼 클릭 - 데이터 전달 완료");
   };
+
+  if (!item) return <div>로딩중...</div>;
 
   return (
     <div className="container">
-      {/* 왼쪽 영역 */}
       <div className="container-left">
         <img
           src="/src/assets/img/menu.svg"
@@ -76,22 +87,14 @@ function TrainDetaile() {
           onClick={() => navigate("/Train")}
         />
         <div className="top-group">
-          <p className="train-title">{detail.trainTitle}</p>
-          <img
-            src={detail.trainImg}
-            alt={detail.trainTitle}
-            className="trainImg"
-          />
+          <p className="train-title">{item.trainTitle}</p>
+          <img src={item.trainImg} alt={item.trainTitle} className="trainImg" />
         </div>
-
         <hr />
-
         <div className="train-content">
-          <p>{detail.trainDescription}</p>
+          <p>{item.trainDescription}</p>
         </div>
-
         <hr />
-
         <div className="review-box">
           <div className="review-title-box">
             <div className="review-title">훈련 후기</div>
@@ -107,13 +110,11 @@ function TrainDetaile() {
             '기다려'를 1분 넘게 하다니 기적 같아요!
           </div>
         </div>
-
         <div className="notice-box">
           <div className="notice-title-box">
             <div className="notice-title">훈련 공지사항</div>
             <button className="btn1">더보기</button>
           </div>
-
           <div className="notice-content">
             훈련 이용 시 주의사항 및 안전 수칙
           </div>
@@ -127,22 +128,19 @@ function TrainDetaile() {
       <div className="container-right">
         <div className="timeTitle">훈련 시간: </div>
         <div className="trainTime">
-          <span>{detail.date}</span>
-          <span>{detail.day}</span>
-          <span>{detail.ampm}</span>
-          <span>{detail.trainTime}</span>
+          <span>{item.date}</span>
+          <span>{item.day}</span>
+          <span>{item.ampm}</span>
+          <span>{item.trainTime}</span>
         </div>
-
         <div className="trainerTitle">담당 훈련사: </div>
         <div className="trainTrainer">
-          <span>{detail.trainerName} 훈련사</span>
+          <span>{item.trainerName} 훈련사</span>
         </div>
-
         <div className="moneyTitle">비용: </div>
         <div className="money">
-          <span>{detail.price?.toLocaleString()}원</span>
+          <span>{item.price?.toLocaleString()}원</span>
         </div>
-
         <div className="btn-group">
           <button className="btn1 pay" onClick={handleToPayment}>
             결제하기
@@ -152,6 +150,13 @@ function TrainDetaile() {
           </button>
         </div>
       </div>
+
+      {/* 모달 */}
+      <ModalOneBtn
+        isOpen={isModalOpen}
+        modalText={modalMsg}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

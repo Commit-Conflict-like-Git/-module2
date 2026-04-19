@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../assets/css/modal.css'
 
-const modalOneBtn =({ isOpen, onClose, modalText }) => {
+const ModalOneBtn =({ isOpen, onClose, modalText }) => {
     if (!isOpen) return null;
 
     return (
@@ -19,4 +19,4 @@ const modalOneBtn =({ isOpen, onClose, modalText }) => {
 
 }
 
-export default modalOneBtn
+export default ModalOneBtn
