@@ -86,14 +86,14 @@ function SignupInfo({onNext, formData, onFormData}) {
                 <div className="title">회원가입</div>
             </div>
 
-            <div className='content-container'>
+            <div className='signup-container'>
                 <div className='input-row'>
                     <label className='info-label'>이름</label>
                     <input
                         type="text"
                         placeholder='  이름을 입력해 주세요.'
                         value={formData.name}
-                        className='textbox'
+                        className='info-textbox'
                         onChange={(e) => onFormData({...formData, name: e.target.value})}
                     />
                 </div>
@@ -109,7 +109,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <input
                         type='date'
                         value={formData.birth}
-                        className='textbox'
+                        className='info-textbox'
                         onChange={(e) => onFormData({...formData, birth: e.target.value})}
                     />
                 </div>
@@ -118,7 +118,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <input
                         type="text"
                         placeholder='  전화번호를 입력해 주세요.'
-                        className='textbox'
+                        className='info-textbox'
                         value={formData.phoneNumber}
                         onChange={handlePhoneChange}
                     />
@@ -128,7 +128,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <input
                         type='email'
                         placeholder='  이메일을 입력해 주세요.'
-                        className='textbox'
+                        className='info-textbox'
                         value={formData.email}
                         onChange={(e) => onFormData({...formData, email: e.target.value})}
                     />
@@ -144,7 +144,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <input
                         type='password'
                         placeholder='  비밀번호를 입력해 주세요.'
-                        className='textbox'
+                        className='info-textbox'
                         value={formData.password}
                         onChange={(e) => onFormData({...formData, password: e.target.value})}
                     />
@@ -154,7 +154,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <input
                         type='password'
                         placeholder='  비밀번호를 다시 입력해주세요.'
-                        className='textbox'
+                        className='info-textbox'
                         value={formData.passwordConfirm || ''}
                         onChange={(e) => onFormData({...formData, passwordConfirm: e.target.value})}
                     />
