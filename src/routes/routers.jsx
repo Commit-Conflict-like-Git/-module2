@@ -10,7 +10,6 @@ import Payment from "../pages/owner/Payment";
 import MyPage from "../pages/public/MyPage";
 import TrainPost from "../pages/trainer/TrainPost";
 import Cart from "../pages/owner/Cart";
-import DogRegister from "../pages/owner/DogRegister";
 
 export const router = createBrowserRouter([
   {
@@ -56,10 +55,6 @@ export const router = createBrowserRouter([
       {
         path: "trainer/post",
         element: <TrainPost />,
-      },
-      {
-        path: "dog-register",
-        element: <DogRegister />,
       },
     ],
   },
