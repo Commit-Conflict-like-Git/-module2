@@ -127,7 +127,7 @@ function MyPage() {
           {/* 훈련 목록 */}
           <div className="mypage-trainList">
             <div className="trainList-content">
-              <div className="section-header">
+              <div className="mypage-section-header">
                 <p className="trainList-title">훈련 목록</p>
                 <button className="btn1">더보기</button>
               </div>
@@ -155,7 +155,7 @@ function MyPage() {
           <div className="mypage-review">
             <div className="mypage-reviewList">
               <div className="reviewList-content">
-                <div className="section-header">
+                <div className="mypage-section-header">
                   <p className="reviewList-title">훈련 후기</p>
 
                   <button className="btn1">더보기</button>
