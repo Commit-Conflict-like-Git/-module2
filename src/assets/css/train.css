@@ -1,5 +1,4 @@
 .back-container {
-    /* min-height: 700px; */
     height: 72vh;
     width: 80%;
     background-color: #FFFDF9;
@@ -8,21 +7,20 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .list-header { 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0px 10px 0px
+    margin: 20px 0;
+    padding: 0 30px;
 }
 
+/* 왼쪽 */
 .title-group {
     display: flex;
     align-items: center;
-    margin-left: 30px;
-    margin-top: 20px;
 }
 
 .paw-icon {      
@@ -36,11 +34,22 @@
     margin-left: 10px;
 }
 
+/* 오른쪽 묶음 */
+.right-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.right-area .btn1 {
+    height: 35px;
+    width: 100px;
+}
+
 .train-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);
     justify-content: center;
-    /* flex-wrap: wrap; */
     gap: 20px; 
     padding: 30px;
     overflow-y: auto;
@@ -79,11 +88,11 @@
     padding: 15px;
     background-color: #FFFFFF;
     border-top: 1px solid #BDBDBD;
+
     display: flex;
     align-items: center;
 }
 
 .tr-card-title {
     font-size: 20px;
-    background-color: transparent;
 }

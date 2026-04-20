@@ -10,17 +10,20 @@ function Payment() {
   const navigate = useNavigate();
 
   const selectedItems = location.state?.selectedItems || [];
-  const totalAmount = location.state?.totalAmount || 0;
 
   const [dogs, setDogs] = useState([]);
-
-  // 강아지 선택
   const [selectedDogs, setSelectedDogs] = useState({});
 
   // 모달
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // ✅ 합계 계산 (문자열 → 숫자 변환 포함)
+  const totalAmount = selectedItems.reduce((sum, item) => {
+    const price = Number(String(item.price).replace(/,/g, "")) || 0;
+    return sum + price;
+  }, 0);
 
   // 유저 강아지 정보 가져오기
   useEffect(() => {
@@ -71,7 +74,7 @@ function Payment() {
             trainId: item.trainId,
             trainTitle: item.trainTitle,
             trainerName: item.trainerName,
-            price: item.price,
+            price: Number(String(item.price).replace(/,/g, "")) || 0, // 🔥 숫자로 저장
             date: item.date,
             trainPlace: item.trainPlace,
             dogId: selectedDogs[item.id || item.trainId] || "default_dog_id",
@@ -83,12 +86,13 @@ function Payment() {
 
       // 장바구니 삭제
       await Promise.all(
-  selectedItems.map((item) => {
-    if (item.id) {
-      return deleteDoc(doc(db, "carts", item.id));
-    }
-  })
-);
+        selectedItems.map((item) => {
+          if (item.id) {
+            return deleteDoc(doc(db, "carts", item.id));
+          }
+        }),
+      );
+
       setModalMsg("결제가 완료되었습니다.");
       setIsModalOpen(true);
       setIsSuccess(true);
@@ -120,7 +124,9 @@ function Payment() {
               <span className="payment-info-value">{item.trainTitle}</span>
 
               <span className="payment-info-title">훈련사</span>
-              <span className="payment-info-value">{item.trainerName} 훈련사</span>
+              <span className="payment-info-value">
+                {item.trainerName} 훈련사
+              </span>
 
               <span className="payment-info-title">일시</span>
               <span className="payment-info-value">{item.date}</span>
@@ -163,6 +169,8 @@ function Payment() {
             </p>
 
             <p className="total-label">총 금액</p>
+
+            {/* ✅ 정상 합계 출력 */}
             <p className="total-price">{totalAmount.toLocaleString()}원</p>
           </div>
 

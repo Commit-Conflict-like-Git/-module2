@@ -5,14 +5,41 @@ import TrainCard from "../owner/TrainCard";
 import SearchBar from "./SearchBar";
 import "../../assets/css/searchBar.css";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { db, auth } from "../../firebase/config";
 
 function Train() {
   const navigate = useNavigate();
 
   const [trainingData, setTrainingData] = useState([]);
+  const [userRole, setUserRole] = useState(null);
 
+  // 🔥 로그인 상태 감지 + role 가져오기
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        setUserRole(null);
+        return;
+      }
+
+      try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+
+        if (userDoc.exists()) {
+          setUserRole(userDoc.data().role); // "TRAINER" or "USER"
+        } else {
+          setUserRole(null);
+        }
+      } catch (error) {
+        console.error("유저 정보 가져오기 실패:", error);
+        setUserRole(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // 🔥 훈련 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +50,6 @@ function Train() {
           ...doc.data(),
         }));
 
-        console.log("불러온 데이터:", data);
         setTrainingData(data);
       } catch (error) {
         console.error("데이터를 불러오는 중 에러 발생:", error);
@@ -37,18 +63,33 @@ function Train() {
     navigate(`/train/${id}`);
   };
 
+  const handleAddTrain = () => {
+    navigate("/trainer/post"); // 👉 훈련 추가 페이지
+  };
+
   return (
     <div className="back-container">
       <div className="list-header">
+        {/* 왼쪽 */}
         <div className="title-group">
           <img src={paw} alt="개 발바닥" className="paw-icon" />
           <div className="training-title">전체훈련 목록</div>
         </div>
-        <SearchBar />
+
+        {/* 오른쪽 */}
+        <div className="right-area">
+          {/* 🔥 TRAINER만 버튼 표시 */}
+          {userRole === "trainer" && (
+            <button className="btn1" onClick={handleAddTrain}>
+              훈련 추가하기
+            </button>
+          )}
+
+          <SearchBar />
+        </div>
       </div>
 
       <div className="train-list">
-        {/* map 함수를 사용하여 카드 자동 생성 */}
         {trainingData.map((item) => (
           <TrainCard
             key={item.id}

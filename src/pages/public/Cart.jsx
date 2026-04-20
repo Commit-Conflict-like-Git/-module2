@@ -99,16 +99,26 @@ function Cart() {
     selectedIds.includes(item.id),
   );
 
-  // 총 합계
-  const totalAmount = selectedItems.reduce(
-    (sum, item) => sum + (item.price || 0),
-    0,
-  );
+  // ✅ 합계 계산 (문자열 → 숫자 변환)
+  const totalAmount = selectedItems.reduce((sum, item) => {
+    const price = Number(String(item.price).replace(/,/g, "")) || 0;
+    return sum + price;
+  }, 0);
 
   // 결제 이동
   const handleToPayment = () => {
+    if (selectedItems.length === 0) {
+      setModalMsg("선택된 항목이 없습니다.");
+      setIsModalOpen(true);
+      return;
+    }
+
     navigate("/payment", {
-      state: { selectedItems, totalAmount },
+      state: {
+        selectedItems,
+        // 👉 totalAmount는 넘겨도 되고 안 넘겨도 됨 (Payment에서 다시 계산함)
+        // totalAmount,
+      },
     });
   };
 
@@ -140,36 +150,40 @@ function Cart() {
         </div>
 
         <div className="cart-list">
-          {cartItems.map((item) => (
-            <div key={item.id} className="cart-item-card">
-              <div className="item-info-group">
-                <input
-                  type="checkbox"
-                  checked={selectedIds.includes(item.id)}
-                  onChange={() => handleSingleSelect(item.id)}
-                />
+          {cartItems.map((item) => {
+            const price = Number(String(item.price).replace(/,/g, "")) || 0;
 
-                <div className="item-details">
-                  <p className="item-name">{item.trainTitle}</p>
-                  <p className="item-trainer">{item.trainerName} 훈련사</p>
-                  <p className="item-price">{item.price?.toLocaleString()}원</p>
+            return (
+              <div key={item.id} className="cart-item-card">
+                <div className="item-info-group">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.includes(item.id)}
+                    onChange={() => handleSingleSelect(item.id)}
+                  />
+
+                  <div className="item-details">
+                    <p className="item-name">{item.trainTitle}</p>
+                    <p className="item-trainer">{item.trainerName} 훈련사</p>
+                    <p className="item-price">{price.toLocaleString()}원</p>
+                  </div>
+                </div>
+
+                <div>
+                  <button
+                    className="btn-detail-view"
+                    onClick={() => navigate(`/train/${item.trainId}`)}
+                  >
+                    상세보기
+                  </button>
+
+                  <button className="btn2" onClick={() => removeItem(item.id)}>
+                    삭제
+                  </button>
                 </div>
               </div>
-
-              <div>
-                <button
-                  className="btn-detail-view"
-                  onClick={() => navigate(`/train/${item.trainId}`)}
-                >
-                  상세보기
-                </button>
-
-                <button className="btn2" onClick={() => removeItem(item.id)}>
-                  삭제
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
 
           {cartItems.length === 0 && (
             <div className="empty-msg">담은 훈련이 없습니다.</div>
@@ -184,27 +198,33 @@ function Cart() {
         </div>
 
         <div className="select-list">
-          {selectedItems.map((item) => (
-            <div key={item.id} className="select-item">
-              <div>
-                <p className="select-item-name">{item.trainTitle}</p>
-                <p className="select-item-trainer">{item.trainerName} 훈련사</p>
-              </div>
+          {selectedItems.map((item) => {
+            const price = Number(String(item.price).replace(/,/g, "")) || 0;
 
-              <div>
-                <p className="select-item-price">
-                  {item.price?.toLocaleString()}원
-                </p>
+            return (
+              <div key={item.id} className="select-item">
+                <div>
+                  <p className="select-item-name">{item.trainTitle}</p>
+                  <p className="select-item-trainer">
+                    {item.trainerName} 훈련사
+                  </p>
+                </div>
 
-                <button
-                  className="btn2"
-                  onClick={() => handleSingleSelect(item.id)}
-                >
-                  선택 해제
-                </button>
+                <div>
+                  <p className="select-item-price">
+                    {price.toLocaleString()}원
+                  </p>
+
+                  <button
+                    className="btn2"
+                    onClick={() => handleSingleSelect(item.id)}
+                  >
+                    선택 해제
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="total-box">
