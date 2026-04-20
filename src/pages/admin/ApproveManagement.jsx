@@ -12,9 +12,11 @@ import {
 } from "firebase/firestore";
 
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import SearchBar from '../../components/admin/Searchbar.jsx';
+import "../../assets/css/adminSearchbar.css";
 
 function ApproveManagement() {
-    const [userData, setUserData] = useState([]);
+    const [approveData, setApproveData] = useState([]);
 
     const storage = getStorage();
 
@@ -67,13 +69,13 @@ function ApproveManagement() {
                 }
             }
 
-            setUserData(results);
+            setApproveData(results);
         };
 
         fetchData();
     }, []);
 
-    const userColumns = [
+    const approveColumns = [
         { key: "index", label: "No." },
         { key: "name", label: "이름" },
         { key: "phone", label: "전화번호" },
@@ -93,9 +95,14 @@ function ApproveManagement() {
     ];
 
     return (
-        <div>
-            <List data={userData} columns={userColumns} />
-        </div>
+        <>
+            <div>
+                <SearchBar />
+            </div>
+            <div>
+                <List data={approveData} columns={approveColumns} />
+            </div>
+        </>
     );
 }
 

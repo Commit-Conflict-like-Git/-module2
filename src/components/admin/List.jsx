@@ -12,7 +12,7 @@ function List({ data, columns }) {
             </thead>
             <tbody>
                 {data.map((item, idx) => (
-                    <tr key={idx}>
+                    <tr key={item.id}>
                         {columns.map((col) => (
                             <td key={col.key}>
                                 <div className="cell-content">
