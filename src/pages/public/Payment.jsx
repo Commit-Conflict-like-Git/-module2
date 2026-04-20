@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../../assets/css/payment.css";
 import { addDoc, collection, deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase/config";
-import modalOneBtn from "../../components/public/modalOneBtn";
+import ModalOneBtn from "../../components/public/modalOneBtn";
 
 function Payment() {
   const location = useLocation();
@@ -83,14 +83,12 @@ function Payment() {
 
       // 장바구니 삭제
       await Promise.all(
-        selectedItems.map((item) => {
-          if (item.id) {
-            return deleteDoc(doc(db, "carts", item.id));
-          }
-          return null;
-        }),
-      );
-
+  selectedItems.map((item) => {
+    if (item.id) {
+      return deleteDoc(doc(db, "carts", item.id));
+    }
+  })
+);
       setModalMsg("결제가 완료되었습니다.");
       setIsModalOpen(true);
       setIsSuccess(true);
@@ -118,19 +116,19 @@ function Payment() {
         <div className="left-container">
           {selectedItems.map((item) => (
             <div key={item.id || item.trainId} className="payment-item">
-              <span className="info-label">훈련명</span>
-              <span className="info-value">{item.trainTitle}</span>
+              <span className="payment-info-title">훈련명</span>
+              <span className="payment-info-value">{item.trainTitle}</span>
 
-              <span className="info-label">훈련사</span>
-              <span className="info-value">{item.trainerName} 훈련사</span>
+              <span className="payment-info-title">훈련사</span>
+              <span className="payment-info-value">{item.trainerName} 훈련사</span>
 
-              <span className="info-label">일시</span>
-              <span className="info-value">{item.date}</span>
+              <span className="payment-info-title">일시</span>
+              <span className="payment-info-value">{item.date}</span>
 
-              <span className="info-label">장소</span>
-              <span className="info-value">{item.trainPlace}</span>
+              <span className="payment-info-title">장소</span>
+              <span className="payment-info-value">{item.trainPlace}</span>
 
-              <span className="info-label">예약 강아지</span>
+              <span className="payment-info-title">예약 강아지</span>
               <select
                 className="dog-select"
                 onChange={(e) =>

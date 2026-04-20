@@ -84,7 +84,7 @@ function TrainDetaile() {
           src="/src/assets/img/menu.svg"
           alt="메뉴바"
           className="menubar"
-          onClick={() => navigate("/Train")}
+          onClick={() => navigate("/train")}
         />
         <div className="top-group">
           <p className="train-title">{item.trainTitle}</p>

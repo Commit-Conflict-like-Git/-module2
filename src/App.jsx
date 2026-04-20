@@ -1,6 +1,6 @@
-import { router } from './routes/routers'
-import { RouterProvider } from 'react-router-dom';
-// import { adminRouter } from './routes/adminRouter';
+import { router } from "./routes/routers";
+import { RouterProvider } from "react-router-dom";
+// import { adminRouter } from "./routes/adminRouter";
 
 function App() {
   return (
