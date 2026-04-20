@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import List from '../../components/admin/List';
 import SearchBar from '../../components/admin/Searchbar.jsx';
 import "../../assets/css/adminSearchbar.css";
@@ -7,6 +9,8 @@ import { db } from '../../firebase/config.js';
 import { collection, getDocs } from "firebase/firestore";
 
 function TrainManagement() {
+
+    const navigate = useNavigate();
 
     const [trainData, setTrainData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -64,7 +68,7 @@ function TrainManagement() {
                         trainerName: data.trainerName,
                         trainTitle: data.trainTitle,
                         date: data.createdAt
-                            ? data.createdAt.toISOString?.() || data.createdAt.toDate().toISOString()
+                            ? data.createdAt.toDate?.().toISOString()
                             : null,
                     };
                 });
@@ -109,6 +113,8 @@ function TrainManagement() {
                 <List
                     data={filteredData}
                     columns={trainColumns}
+
+                    onRowClick={(row) => navigate(`/train/${row.id}`)}
                 />
             </div>
         </>

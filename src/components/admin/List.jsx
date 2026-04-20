@@ -1,6 +1,5 @@
 import '../../assets/css/adminList.css';
-
-function List({ data, columns }) {
+function List({ data, columns, onRowClick }) {
     return (
         <table>
             <thead>
@@ -10,9 +9,13 @@ function List({ data, columns }) {
                     ))}
                 </tr>
             </thead>
+
             <tbody>
                 {data.map((item, idx) => (
-                    <tr key={item.id}>
+                    <tr
+                        key={item.id || idx}
+                        onClick={() => onRowClick?.(item)}
+                    >
                         {columns.map((col) => (
                             <td key={col.key}>
                                 <div className="cell-content">

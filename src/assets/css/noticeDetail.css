@@ -1,0 +1,95 @@
+.notice-detail-container {
+    width: 100%;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+    background: #f1ede6;
+}
+
+.notice-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.notice-date {
+    font-size: 14px;
+    color: #777;
+}
+
+.notice-content {
+    padding: 20px 10px 30px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    min-height: 300px;
+
+    border-bottom: 1px solid #e5dfd5;
+}
+
+.notice-btn-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.admin-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.notice-nav {
+    margin-top: 30px;
+    border-top: 1px solid #dcd6ca;
+}
+
+.nav-item {
+    display: flex;
+    gap: 20px;
+    padding: 14px 5px;
+
+    border-bottom: 1px solid #e5dfd5;
+
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-item:hover {
+    background: #f6f2ea;
+}
+
+.nav-item span {
+    width: 70px;
+    color: #888;
+}
+
+.nav-item p {
+    flex: 1;
+}
+
+.nav-item.disabled {
+    color: #bbb;
+    cursor: default;
+}
+
+.nav-item.disabled:hover {
+    background: transparent;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .notice-btn-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .admin-btns {
+        justify-content: flex-end;
+    }
+}

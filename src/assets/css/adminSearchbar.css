@@ -58,6 +58,29 @@
 .filter-select,
 .search-box,
 .search-box input,
-.filter-select option {
+.filter-select option,
+.notice-toolbar {
     background-color: #FFFDF9;
+}
+
+.notice-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.notice-toolbar .search-group {
+    flex: 1;
+}
+
+.notice-toolbar .btn1 {
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
 }

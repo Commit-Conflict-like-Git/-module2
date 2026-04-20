@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import List from '../../components/admin/List';
 import { db } from '../../firebase/config.js';
 import {
@@ -12,8 +13,16 @@ import "../../assets/css/adminSearchbar.css";
 
 function OwnerManagement() {
 
+  const navigate = useNavigate();
+
   const [ownerData, setOwnerData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+
+  const getStatusLabel = (status) => {
+    if (status === "active") return "활성화";
+    if (status === "inactive") return "비활성화";
+    return "활성화";
+  };
 
   const sortFieldMap = {
     name: "name",
@@ -104,7 +113,11 @@ function OwnerManagement() {
       render: (row) =>
         row.date ? new Date(row.date).toLocaleDateString() : "-"
     },
-    { key: "state", label: "상태" },
+    {
+      key: "state",
+      label: "상태",
+      render: (row) => getStatusLabel(row.state)
+    },
   ];
 
   return (
@@ -124,6 +137,7 @@ function OwnerManagement() {
         <List
           data={filteredData}
           columns={ownerColumns}
+          onRowClick={(row) => navigate(`/owner/${row.id}`)}
         />
       </div>
     </>

@@ -4,9 +4,8 @@ table {
     table-layout: fixed;
 }
 
-/* 공통 색상 관리 */
+/* 공통 색상 */
 :root {
-    --table-bg: #FFFDF9;
     --table-hover: #F7F1E7;
     --table-border: #5D695D;
 }
@@ -18,7 +17,6 @@ thead th {
     text-align: center;
     vertical-align: middle;
     font-weight: 600;
-    background-color: var(--table-bg);
 }
 
 tbody td {
@@ -27,7 +25,11 @@ tbody td {
     text-align: center;
     vertical-align: middle;
     padding: 0;
-    background-color: var(--table-bg);
+}
+
+tbody tr:hover td {
+    background-color: var(--table-hover);
+    cursor: pointer;
 }
 
 td,
@@ -37,18 +39,7 @@ th {
     white-space: nowrap;
 }
 
-tbody tr:hover td,
-tbody tr:hover .cell-content,
-tbody tr:hover .download-icon {
-    background-color: var(--table-hover);
-    cursor: pointer;
-}
-
 .cell-content {
-    background-color: var(--table-bg);
-    max-height: 60px;
-    overflow-y: auto;
-    overflow-x: hidden;
     padding: 8px;
     box-sizing: border-box;
 
@@ -57,7 +48,9 @@ tbody tr:hover .download-icon {
 }
 
 .download-icon {
-    width: 30px;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
     cursor: pointer;
-    background-color: var(--table-bg);
 }
