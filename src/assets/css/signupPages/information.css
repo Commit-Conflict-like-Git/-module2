@@ -2,7 +2,8 @@ label {
     background: #FFFDF9;
     font-weight: 600;
 }
-.content-container {
+
+.signup-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +11,7 @@ label {
     gap: 30px;
 }
 
-.info-label {
+.signup-container .info-label {
     width: 160px;
     font-size: 25px;
 }
@@ -33,29 +34,28 @@ input::placeholder {
     font-size: 22px;
 }
 
-.textbox {
+.info-textbox {
     flex: 1;
     height: 40px;
-    /* width: 50vh; */
     border: solid 1.5px #705948;
     border-radius: 5px;
     background: #FFFDFD;
 }
 
 /* 생년월일 placeholder */
-.textbox[type="date"] {
+.info-textbox[type="date"] {
     color: #C2AA84; 
     font-family: 'suite';
     padding-right: 10px;
 }
 
-.textbox[type="date"]:focus,
-.textbox[type="date"]:valid {
+.info-textbox[type="date"]:focus,
+.info-textbox[type="date"]:valid {
     font-size: 20px;
     color: #C2AA84;
 }
 
-.textbox[type="date"]::-webkit-calendar-picker-indicator {
+.info-textbox[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     opacity: 0.7;
 }

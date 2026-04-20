@@ -9,6 +9,7 @@ import Login from "../pages/public/Login";
 import Cart from "../pages/public/Cart";
 import Payment from "../pages/public/Payment";
 import MyPage from "../pages/public/MyPage";
+import TrainPost from "../pages/trainer/TrainPost";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,9 @@ export const router = createBrowserRouter([
         path: "mypage",
         element: <MyPage />,
       },
+        path: "trainer/post",
+        element: <TrainPost />
+      }
     ],
   },
 ]);
