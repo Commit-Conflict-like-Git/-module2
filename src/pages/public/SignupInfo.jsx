@@ -91,7 +91,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <label className='info-label'>이름</label>
                     <input
                         type="text"
-                        placeholder='  이름을 입력해 주세요.'
+                        placeholder='이름을 입력해 주세요.'
                         value={formData.name}
                         className='info-textbox'
                         onChange={(e) => onFormData({...formData, name: e.target.value})}
@@ -117,7 +117,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <label className='info-label'>전화번호</label>
                     <input
                         type="text"
-                        placeholder='  전화번호를 입력해 주세요.'
+                        placeholder='전화번호를 입력해 주세요.'
                         className='info-textbox'
                         value={formData.phoneNumber}
                         onChange={handlePhoneChange}
@@ -127,7 +127,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <label className='info-label'>이메일</label>
                     <input
                         type='email'
-                        placeholder='  이메일을 입력해 주세요.'
+                        placeholder='이메일을 입력해 주세요.'
                         className='info-textbox'
                         value={formData.email}
                         onChange={(e) => onFormData({...formData, email: e.target.value})}
@@ -143,7 +143,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <label className='info-label'>비밀번호</label>
                     <input
                         type='password'
-                        placeholder='  비밀번호를 입력해 주세요.'
+                        placeholder='비밀번호를 입력해 주세요.'
                         className='info-textbox'
                         value={formData.password}
                         onChange={(e) => onFormData({...formData, password: e.target.value})}
@@ -153,7 +153,7 @@ function SignupInfo({onNext, formData, onFormData}) {
                     <label className='info-label'>비밀번호 확인</label>
                     <input
                         type='password'
-                        placeholder='  비밀번호를 다시 입력해주세요.'
+                        placeholder='비밀번호를 다시 입력해주세요.'
                         className='info-textbox'
                         value={formData.passwordConfirm || ''}
                         onChange={(e) => onFormData({...formData, passwordConfirm: e.target.value})}

@@ -40,6 +40,11 @@ input::placeholder {
     border: solid 1.5px #705948;
     border-radius: 5px;
     background: #FFFDFD;
+
+    font-family: 'suite';
+    font-size: 20px;
+    color: #705948;
+    padding-left: 15px;
 }
 
 /* 생년월일 placeholder */
