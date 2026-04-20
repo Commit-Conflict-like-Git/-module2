@@ -60,7 +60,7 @@ function TrainDetaile() {
     }
   };
 
-  // 결제
+  //  결제
   const handleToPayment = () => {
     if (!item) return;
 
