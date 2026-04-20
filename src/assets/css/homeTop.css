@@ -1,0 +1,71 @@
+.home-container {
+    width: 70%;
+    height: 69vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px auto;
+    gap: 20px;
+}
+
+.status-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.home-status-bar, .home-section, .home-notice, .home-banner {
+    background: #FFFDF9;
+    border-radius: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+/* 홈 가장 윗부분 */
+.home-status-bar {
+    display: flex;
+    align-items: center;
+    height: 13vh;
+}
+
+.status-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.status-left-group {
+    display: flex;
+    align-items: center;
+}
+
+.home-top, .nonlogin-message {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dog-info-summary {
+    color: #988D82;
+    font-size: 15px;
+}
+
+.nonlogin-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.nonlogin-btn-container .btn1 {
+    width: 80px;
+    font-weight: 600;
+}
+
+.home-signup {
+    font-size: 14px;
+    color: #988D82;
+    text-decoration: underline;
+    cursor: pointer;
+}

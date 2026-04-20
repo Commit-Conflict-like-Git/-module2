@@ -1,0 +1,42 @@
+.home-section-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.home-innertitle {
+    background: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.more-btn {
+    font-size: 15px;
+}
+
+.more-btn:hover {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/* 홈 중앙 (인기훈련) */
+.home-section {
+    height: 33vh;
+}
+
+/* 인기훈련 정렬 */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* 홈 공지사항, 배너 */
+.home-bottom {
+    height: 23vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
