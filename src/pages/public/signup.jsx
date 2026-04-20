@@ -43,7 +43,7 @@ function Signup() {
 
 
     return (
-        <div className='signup-container'>
+        <div className='signup-main-container'>
             {step === 0 && <SignupRoleSelect formData={formData} onFormData={setFormData} onNext={nextStep}/>}
             {step === 1 && <SignupInfo formData={formData} onFormData={setFormData} onNext={nextStep}/>}
 
