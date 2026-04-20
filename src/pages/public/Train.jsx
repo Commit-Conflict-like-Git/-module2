@@ -14,7 +14,6 @@ function Train() {
   const [trainingData, setTrainingData] = useState([]);
   const [userRole, setUserRole] = useState(null);
 
-  // 🔥 로그인 상태 감지 + role 가져오기
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
@@ -26,7 +25,7 @@ function Train() {
         const userDoc = await getDoc(doc(db, "users", user.uid));
 
         if (userDoc.exists()) {
-          setUserRole(userDoc.data().role); // "TRAINER" or "USER"
+          setUserRole(userDoc.data().role);
         } else {
           setUserRole(null);
         }
@@ -39,7 +38,6 @@ function Train() {
     return () => unsubscribe();
   }, []);
 
-  // 🔥 훈련 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -64,7 +62,7 @@ function Train() {
   };
 
   const handleAddTrain = () => {
-    navigate("/trainer/post"); // 👉 훈련 추가 페이지
+    navigate("/trainer/post");
   };
 
   return (
@@ -78,7 +76,6 @@ function Train() {
 
         {/* 오른쪽 */}
         <div className="right-area">
-          {/* 🔥 TRAINER만 버튼 표시 */}
           {userRole === "trainer" && (
             <button className="btn1" onClick={handleAddTrain}>
               훈련 추가하기

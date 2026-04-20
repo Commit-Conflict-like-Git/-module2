@@ -14,7 +14,6 @@ function TrainDetaile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
 
-  // 🔥 상세 데이터 가져오기
   useEffect(() => {
     const fetchDetail = async () => {
       const docSnap = await getDoc(doc(db, "trainings", id));
@@ -25,12 +24,11 @@ function TrainDetaile() {
     fetchDetail();
   }, [id]);
 
-  // 🔥 price 안전 변환 함수
   const getPrice = (price) => {
-    return Number(String(price).replace(/,/g, "")) || 0;
+    return Number(price) || 0;
   };
 
-  // 🔥 장바구니 추가
+  // 장바구니
   const handleAddToCart = async () => {
     if (!item) return;
     const user = auth.currentUser;
@@ -46,7 +44,7 @@ function TrainDetaile() {
       trainId: id,
       trainTitle: item.trainTitle,
       trainerName: item.trainerName,
-      price: getPrice(item.price), // 🔥 숫자로 저장
+      price: getPrice(item.price),
       date: item.date,
       trainPlace: item.trainPlace,
     };
@@ -62,7 +60,7 @@ function TrainDetaile() {
     }
   };
 
-  // 🔥 결제 이동
+  //  결제
   const handleToPayment = () => {
     if (!item) return;
 
@@ -76,7 +74,7 @@ function TrainDetaile() {
             trainId: id,
             trainTitle: item.trainTitle,
             trainerName: item.trainerName,
-            price: price, // 🔥 숫자로 전달
+            price: price,
             date: item.date,
             trainPlace: item.trainPlace,
           },
@@ -167,7 +165,7 @@ function TrainDetaile() {
         </div>
 
         <div className="btn-group">
-          <button className="btn1 pay" onClick={handleToPayment}>
+          <button className="btn1" onClick={handleToPayment}>
             결제하기
           </button>
 
