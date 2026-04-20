@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
         element: <TrainPost />,
       },
       {
-        path: "dog-register",
+        path: "dog/register",
         element: <DogRegister />,
       },
     ],
