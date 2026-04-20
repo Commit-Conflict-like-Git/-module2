@@ -52,6 +52,7 @@ export const router = createBrowserRouter([
         path: "mypage",
         element: <MyPage />,
       },
+      {
         path: "trainer/post",
         element: <TrainPost />
       }
