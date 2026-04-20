@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { registerTrainPost } from '../../services/trainService'
+import Modal2 from '../../components/public/ModalTwoBtn'
 import paw from '../../assets/img/paw.svg'
 import '../../assets/css/signup.css'
 import '../../assets/css/button.css'
 import '../../assets/css/trainPost.css'
 
 function TrainPost() {
+    // 모달
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         trainTitle: '',
         day: '월요일',
@@ -44,6 +51,27 @@ function TrainPost() {
             trainTime: `${formattedHours}:${minutes}`
         })
     }
+
+    const handleRegisterClick = async () => {
+        try {
+            setIsModalOpen(true);
+        } catch (error) {
+            console.log("훈련 등록에 실패했습니다. 다시 시도해주세요")
+        }
+    };
+
+    const handleConfirmRegistration = async () => {
+        try {
+            const postId = await registerTrainPost(formData);
+            
+            setIsModalOpen(false);
+            navigate('/train');
+        } catch (error) {
+            console.error("실제 발생 에러:", error);
+            alert(`등록 실패: ${error.message}`); // 사용자에게 에러 내용 노출
+            setIsModalOpen(false);
+        }
+    };
 
     return (
         <div className='inner-body'>
@@ -125,10 +153,10 @@ function TrainPost() {
             </div>
 
             <div className='trainpost-container-description'>
-                <div className='input-row'>
-                    <label className='info-label'>상세설명</label>
+                <div className='input-row' style={{ alignItems: 'flex-start' }}>
+                    <label className='info-label-description'>상세설명</label>
                     <textarea
-                        className='trainpost-textbox'
+                        className='trainpost-text'
                         value={formData.trainDescription}
                         onChange={(e) => setFormData({...formData, trainDescription: e.target.value})}
                     />
@@ -145,9 +173,17 @@ function TrainPost() {
                     </div>
                 </div>
             </div>
+
             <div className='button-container'>
-                <button className='btn1'>등록</button>
+                <button className='btn1' onClick={handleRegisterClick}>등록</button>
             </div>
+
+            <Modal2
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={handleConfirmRegistration}
+                modalText="훈련을 등록하시겠습니까?"
+            />
         </div>
     );
 }
