@@ -16,7 +16,7 @@ function Navbar() {
         <li>|</li>
         <li>
           <NavLink
-            to="/Train"
+            to="/train"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             훈련
@@ -25,7 +25,7 @@ function Navbar() {
         <li>|</li>
         <li>
           <NavLink
-            to="/Cart"
+            to="/cart"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             장바구니
@@ -34,7 +34,7 @@ function Navbar() {
         <li>|</li>
         <li>
           <NavLink
-            to="/Notice"
+            to="/notice"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             공지사항
@@ -43,7 +43,7 @@ function Navbar() {
         <li>|</li>
         <li>
           <NavLink
-            to="/MyPage"
+            to="/mypage"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
             마이페이지
