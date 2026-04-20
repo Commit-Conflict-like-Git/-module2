@@ -6,10 +6,10 @@ import Notice from "../pages/public/Notice";
 import Signup from "../pages/public/signup";
 import TrainDetaile from "../pages/public/TrainDetaile";
 import Login from "../pages/public/Login";
-import Cart from "../pages/public/Cart";
-import Payment from "../pages/public/Payment";
+import Payment from "../pages/owner/Payment";
 import MyPage from "../pages/public/MyPage";
 import TrainPost from "../pages/trainer/TrainPost";
+import Cart from "../pages/owner/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -54,8 +54,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "trainer/post",
-        element: <TrainPost />
-      }
+        element: <TrainPost />,
+      },
     ],
   },
 ]);

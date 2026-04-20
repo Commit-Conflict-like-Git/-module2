@@ -36,12 +36,12 @@ function MyPage() {
         }
 
         // 결제
-        const q = query(
-          collection(db, "payments"),
-          where("uid", "==", currentUser.uid),
+        const paymentSnap = await getDocs(
+          query(
+            collection(db, "payments"),
+            where("uid", "==", currentUser.uid),
+          ),
         );
-
-        const paymentSnap = await getDocs(q);
 
         const paymentList = paymentSnap.docs.map((doc) => ({
           id: doc.id,
@@ -96,7 +96,7 @@ function MyPage() {
 
           <div className="dog-list">
             {dogs.length === 0 ? (
-              <p className="empty-msg">등록된 강아지가 없습니다.</p>
+              <p className="non-msg">등록된 강아지가 없습니다.</p>
             ) : (
               dogs.map((dog) => (
                 <div key={dog.dogId} className="dog-card">
@@ -129,7 +129,7 @@ function MyPage() {
 
             <div className="train-list-body">
               {payments.length === 0 ? (
-                <div className="empty-msg">결제 내역이 없습니다.</div>
+                <div className="non-msg">결제 내역이 없습니다.</div>
               ) : (
                 payments.map((pay) => (
                   <div key={pay.id} className="train-item-card">
@@ -153,7 +153,7 @@ function MyPage() {
               </div>
 
               <div className="review-list-body">
-                <p className="empty-msg">작성한 후기가 없습니다.</p>
+                <p className="non-msg">작성한 후기가 없습니다.</p>
               </div>
             </div>
           </div>

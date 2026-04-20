@@ -19,9 +19,9 @@ function Payment() {
   const [modalMsg, setModalMsg] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // ✅ 합계 계산 (문자열 → 숫자 변환 포함)
+  // 합계 계산
   const totalAmount = selectedItems.reduce((sum, item) => {
-    const price = Number(String(item.price).replace(/,/g, "")) || 0;
+    const price = Number(item.price) || 0;
     return sum + price;
   }, 0);
 
@@ -74,7 +74,7 @@ function Payment() {
             trainId: item.trainId,
             trainTitle: item.trainTitle,
             trainerName: item.trainerName,
-            price: Number(String(item.price).replace(/,/g, "")) || 0, // 🔥 숫자로 저장
+            price: Number(item.price) || 0,
             date: item.date,
             trainPlace: item.trainPlace,
             dogId: selectedDogs[item.id || item.trainId] || "default_dog_id",
@@ -169,8 +169,6 @@ function Payment() {
             </p>
 
             <p className="total-label">총 금액</p>
-
-            {/* ✅ 정상 합계 출력 */}
             <p className="total-price">{totalAmount.toLocaleString()}원</p>
           </div>
 

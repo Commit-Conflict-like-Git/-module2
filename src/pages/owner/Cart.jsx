@@ -99,9 +99,9 @@ function Cart() {
     selectedIds.includes(item.id),
   );
 
-  // ✅ 합계 계산 (문자열 → 숫자 변환)
+  // 합계 계산
   const totalAmount = selectedItems.reduce((sum, item) => {
-    const price = Number(String(item.price).replace(/,/g, "")) || 0;
+    const price = Number(item.price) || 0;
     return sum + price;
   }, 0);
 
@@ -116,8 +116,6 @@ function Cart() {
     navigate("/payment", {
       state: {
         selectedItems,
-        // 👉 totalAmount는 넘겨도 되고 안 넘겨도 됨 (Payment에서 다시 계산함)
-        // totalAmount,
       },
     });
   };
@@ -151,7 +149,7 @@ function Cart() {
 
         <div className="cart-list">
           {cartItems.map((item) => {
-            const price = Number(String(item.price).replace(/,/g, "")) || 0;
+            const price = Number(item.price) || 0;
 
             return (
               <div key={item.id} className="cart-item-card">
@@ -199,7 +197,7 @@ function Cart() {
 
         <div className="select-list">
           {selectedItems.map((item) => {
-            const price = Number(String(item.price).replace(/,/g, "")) || 0;
+            const price = Number(item.price) || 0;
 
             return (
               <div key={item.id} className="select-item">
