@@ -1,0 +1,168 @@
+.container{
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+    gap: 10px;
+}
+
+.container-left {
+    height: 72vh;
+    width: 70%;
+    background-color: #FFFDF9;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.container-right {
+    height: 50vh;
+    width: 30%;
+    border-radius: 20px;
+    background-color: #FFFDF9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menubar {
+    width: 30px;
+    height: 30px;
+    margin: 10px 0px 10px 0px;
+    cursor: pointer;
+}
+.top-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.train-title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.trainImg{
+    width: 500px;
+    height: 200px;
+    background-color: #FFFDF9;
+    overflow: hidden;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #D9D9D9;
+    margin: 20px 0;
+}
+
+.train-content {
+    margin: 20px 0px;
+    font-size: 20px;
+    white-space: pre-line;  /* 줄바꿈 적용 */
+}
+
+.review-box {
+    margin-top: 30px;
+}
+
+.review-title-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px 10px 30px;
+}
+
+.review-title { 
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.review-content {
+    border-bottom: 1px solid #D9D9D9;
+    font-size: 20px;
+    padding: 10px;
+}
+
+
+.notice-box {
+    margin-top: 30px;
+}
+
+.notice-title-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px 10px 30px;
+}
+
+.notice-title { 
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.notice-content {
+    border-bottom: 1px solid #D9D9D9;
+    font-size: 20px;
+    padding: 10px;
+}
+
+/* 훈련 시간 */
+.timeTitle {
+    font-size: 18px;
+    font-weight: bold;
+} 
+
+.trainTime {
+    font-size: 16px;
+    display: flex;
+    gap: 5px;
+}
+/* 훈련사 */
+.trainerTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.trainTrainer {
+    font-size: 16px;
+    display: flex;
+    gap: 5px;
+}
+/* 비용 */
+.moneyTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.money {
+    font-size: 16px;
+    display: flex;
+    gap: 5px;
+}
+
+.review-box .btn1, .notice-box .btn1 {
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-group {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-group button {
+  width: 100%;
+}
+
+span {
+    background-color: transparent;
+}
