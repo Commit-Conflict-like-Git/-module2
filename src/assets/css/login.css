@@ -43,6 +43,10 @@
     background: none;
     width: 70%;
     height: 35px;
+
+    font-family: 'suite';
+    font-size: 20px;
+    color: #705948;
 }
 
 .login-email-input {margin-left: 15px;}

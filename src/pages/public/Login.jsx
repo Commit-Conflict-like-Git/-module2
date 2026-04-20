@@ -25,7 +25,7 @@ function Login() {
 
     // 유효성 검사
     if (!formData.email.trim()) {
-      newErrors.email = "아이디를 입력하세요.";
+      newErrors.email = "이메일을 입력하세요.";
       isValid = false;
     }
     if (!formData.password.trim()) {
