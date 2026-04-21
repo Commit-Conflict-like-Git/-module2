@@ -10,10 +10,12 @@
     background: none;
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .more-btn {
     font-size: 15px;
+    cursor: pointer;
 }
 
 .more-btn:hover {
@@ -33,10 +35,85 @@
     gap: 20px;
 }
 
-/* 홈 공지사항, 배너 */
+/* 인기훈련 카드 */
+.home-section .card-grid .train-card {
+    height: auto;
+    min-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card-grid .train-card:hover {
+    transform: none;
+}
+
+.card-grid .tr-card-img {
+    height: 120px;
+}
+
+.card-grid .tr-card-title {
+    font-size: 15px;
+}
+
+/* 홈 공지사항 */
 .home-bottom {
     height: 23vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
 }
+
+.notice-list {
+    padding-left: 20px;
+}
+
+.notice-li, .notice-item {
+    font-size: 18px;
+    font-weight: 500;
+    color: #988D82;
+}
+
+/* 홈 배너 */
+.home-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+.banner-content {
+    width: 100%;
+    height: 100%;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.banner-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    
+    font-size: 25px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.banner-nav.prev { left: 0px; }
+.banner-nav.next { right: 0px; }

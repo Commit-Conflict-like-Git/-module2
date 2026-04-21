@@ -43,10 +43,27 @@ function Login() {
     } catch (error) {
       let message = "";
 
-      if (error.code === 'auth/user-disabled-custom') {
-        message = "비활성화 상태로 서비스 이용이 제한됩니다. 관리자에게 문의하세요. ";
-      } else {
-        message = "이메일 혹은 비밀번호가 일치하지 않습니다. "
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        message = "이메일 또는 비밀번호가 일치하지 않습니다.";
+      } 
+      else if (error.code === 'auth/user-disabled-custom') {
+        message = (
+          <>
+            비활성화 상태로 서비스 이용이 제한됩니다. <br/>
+            관리자에게 문의하세요.
+          </>
+        );
+      } 
+      else if (error.code === 'auth/not-approved') {
+        message = (
+          <>
+            승인되지 않은 훈련사 계정입니다. <br/>
+            관리자의 승인을 기다려 주세요.
+          </>
+        );
+      } 
+      else {
+        message = "로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
       }
 
       setModalMsg(message);
