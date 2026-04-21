@@ -12,6 +12,7 @@ import MyPage from "../pages/public/MyPage";
 import TrainPost from "../pages/trainer/TrainPost";
 import Cart from "../pages/owner/Cart";
 import DogRegister from "../pages/owner/DogRegister";
+import TrainPaymentList from "../pages/owner/TrainPaymentList";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: "dog/register",
         element: <DogRegister />,
+      },
+      {
+        path: "trainpaymentlist",
+        element: <TrainPaymentList />,
       },
     ],
   },

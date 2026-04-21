@@ -1,0 +1,90 @@
+.list-container { 
+    width: 80%;  
+    margin: 20px auto;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.back-link {
+    border: none;
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payment-grid { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 10px;
+    overflow-y: auto; 
+}
+
+.payment-item-card {
+    flex: 0 1 300px;
+    height: 250px; 
+    background: #FFFDF9;
+    border: 1px solid #6B5949;
+    border-radius: 20px;
+    padding: 20px;
+    
+    display: flex;
+    flex-direction: column; 
+}
+
+.payment-grid::-webkit-scrollbar {
+    width: 6px;
+}
+.payment-grid::-webkit-scrollbar-thumb {
+    background-color: #E8E1D9;
+    border-radius: 10px;
+}
+
+.card-top {
+    margin-bottom: 10px;
+}
+
+.card-top h3 { 
+    margin: 10px 0; 
+    font-size: 18px; 
+    background-color: transparent;
+}
+
+.card-body {
+    flex-grow: 1; 
+    margin-bottom: 15px;
+}
+
+.card-body p { 
+    font-size: 15px; 
+    color: #666; 
+    margin-bottom: 10px;
+}
+
+.card-footer { 
+    display: flex; 
+    gap: 10px; 
+    margin-top: auto; 
+}
+
+.card-footer button { 
+    flex: 1; 
+    padding: 10px; 
+    font-size: 14px;
+}
+
+.empty-msg-box {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.empty-msg {
+    color: #999;
+    font-size: 16px;
+}

@@ -3,7 +3,6 @@ import paw from "../../assets/img/paw.svg";
 import { useNavigate } from "react-router-dom";
 import TrainCard from "../owner/TrainCard";
 import SearchBar from "./SearchBar";
-import "../../assets/css/searchBar.css";
 import { useEffect, useState } from "react";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase/config";
