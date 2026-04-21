@@ -1,10 +1,13 @@
-.notice-box> :first-child {
-    margin-bottom: 15px;
-}
-
 .notice-table-wrapper {
     flex: 1;
     overflow-y: auto;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.notice-table-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 table {
