@@ -224,7 +224,7 @@ function TrainDetail() {
                 삭제하기
               </button>
 
-              <button className="btn3" onClick={() => navigate("/train")}>
+              <button className="btn3" onClick={() => navigate("/admin/train")}>
                 목록으로
               </button>
             </>
