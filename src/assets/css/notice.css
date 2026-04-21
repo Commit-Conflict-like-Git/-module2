@@ -5,10 +5,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.notice-page-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .notice-box {
     width: 1200px;
+    max-height: 650px;
     background: #FFFDF9;
     border-radius: 20px;
 
@@ -17,6 +26,4 @@
 
     padding: 20px 30px;
     box-sizing: border-box;
-
-    overflow: hidden;
 }
