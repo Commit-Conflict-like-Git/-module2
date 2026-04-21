@@ -9,14 +9,14 @@ function Header() {
 
   const [user, setUser] = useState(null);
 
-  // 2. 현재 로그인한 사용자가 있는지 실시간으로 감시
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // 로그인하면 정보가 담기고, 로그아웃하면 null이 됨
+      setUser(currentUser);
     });
-    return () => unsubscribe(); // 컴포넌트가 사라질 때 감시 종료
+    return () => unsubscribe(); 
   }, []);
 
+  // 로그아웃
   const handleLogout = async () => {
     try {
       await signOut(auth);

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase/config';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, collection, query, limit, getDocs, where } from 'firebase/firestore';
+import { doc, getDoc, collection, query, limit, getDocs, where, getCountFromServer } from 'firebase/firestore';
 import TrainCard from '../owner/TrainCard';
 import paw from '../../assets/img/paw.svg';
 import person from '../../assets/img/user-img.svg';
@@ -22,6 +22,7 @@ function Home() {
   const [userNotice, setUserNotice] = useState([]);
   const bannerImages = [banner1, banner2, banner3];
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [totalDogs, setTotalDogs] = useState(0);
 
   const calculateAge = (birthDate) => {
     if (!birthDate) return "";
@@ -29,6 +30,20 @@ function Home() {
     const currentYear = new Date().getFullYear();
     return currentYear - birthYear;
   }
+
+  const fetchTotalDogCount = useCallback(async () => {
+    try {
+      const dogsCollection = collection(db, "dogs");
+      const snapshot = await getCountFromServer(dogsCollection);
+      setTotalDogs(snapshot.data().count);
+    } catch (error) {
+      console.error("강아지 마릿수 조회 오류:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchTotalDogCount();
+  }, [fetchTotalDogCount]);
 
   useEffect(() => {
     // 유저 감시 및 반려견 정보 호출
@@ -149,7 +164,7 @@ function Home() {
               </div>
             ) : (
               <div className='nonlogin-message'>
-                <span>62마리의 강아지가 오늘도 함께 훈련중입니다 </span>
+                <span>{totalDogs}마리의 강아지가 오늘도 함께 훈련중입니다 </span>
               </div>
             )}
           </div>
