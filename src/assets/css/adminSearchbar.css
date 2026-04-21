@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'suite';
+    src: url(../font/SUITE-Variable.ttf);
+}
+
 .search-group {
     display: flex;
     justify-content: flex-end;
@@ -14,6 +19,24 @@
     color: #6B5949;
     cursor: pointer;
     outline: none;
+    font-family: 'suite';
+}
+
+/* filter-select placeholder */
+.filter-select [type="date"] {
+    color: #C2AA84; 
+    padding-right: 10px;
+}
+
+.filter-select[type="date"]:focus,
+.filter-select[type="date"]:valid {
+    font-size: 15px;
+    color: #C2AA84;
+}
+
+.filter-select[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 .search-box {

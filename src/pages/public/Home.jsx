@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase/config';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, collection, query, limit, getDocs, where, getCountFromServer } from 'firebase/firestore';
+import { doc, getDoc, collection, query, limit, getDocs, where, getCountFromServer, orderBy} from 'firebase/firestore';
 import TrainCard from '../owner/TrainCard';
 import paw from '../../assets/img/paw.svg';
 import person from '../../assets/img/user-img.svg';
@@ -46,7 +46,7 @@ function Home() {
   }, [fetchTotalDogCount]);
 
   useEffect(() => {
-    // 유저 감시 및 반려견 정보 호출
+    // 유저 감시 및 반려견 정보
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
@@ -75,7 +75,7 @@ function Home() {
       }
     });
 
-    // 인기 훈련 호출
+    // 인기 훈련
     const fetchTrainings = async () => {
       try {
         const q = query(collection(db, "trainings"), limit(4));
@@ -90,10 +90,15 @@ function Home() {
       }
     };
 
-    // 공지사항 호출
+    // 공지사항
     const fetchNotices = async () => {
       try {
-        const q = query(collection(db, "notices"), limit(4));
+        const q = query(
+          collection(db, "notices"), 
+          orderBy("uploadDate", "desc"),
+          limit(4)
+        );
+
         const querySnapshot = await getDocs(q);
         const noticeData = querySnapshot.docs.map(doc => ({
           id: doc.id,
