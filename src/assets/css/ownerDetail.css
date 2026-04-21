@@ -1,0 +1,95 @@
+.owner-container {
+    width: 100%;
+}
+
+/* 헤더 */
+.owner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+    margin-bottom: 20px;
+
+    background: #f1ede6;
+    border-radius: 12px;
+}
+
+.owner-header-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.owner-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10%;
+    border-bottom: 1px solid #e5dfd5;
+}
+
+.dog-section {
+    margin-top: 30px;
+}
+
+.dog-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.dog-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.owner-dog-card {
+    flex: 1;
+    min-width: 0;
+
+    border: 1px solid #d5c7b3;
+    border-radius: 12px;
+    padding: 15px;
+
+    display: flex;
+    gap: 15px;
+
+    background: #fff;
+}
+
+.owner-dog-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ddd;
+}
+
+.dog-info {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.dog-more {
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+    transition: 0.2s;
+}
+
+.dog-more:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .owner-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .owner-dog-card {
+        width: 100%;
+    }
+}

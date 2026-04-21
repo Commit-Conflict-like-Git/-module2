@@ -2,17 +2,27 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/css/trainDetail.css";
 import "../../assets/css/button.css";
 import { useEffect, useState } from "react";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  deleteDoc
+} from "firebase/firestore";
 import { db, auth } from "../../firebase/config";
 import ModalOneBtn from "../../components/public/modalOneBtn";
+import ModalTwoBtn from "../../components/public/modalTwoBtn";
 
-function TrainDetaile() {
+function TrainDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [item, setItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -23,6 +33,25 @@ function TrainDetaile() {
     };
     fetchDetail();
   }, [id]);
+
+  // role 확인
+  useEffect(() => {
+    const checkAdmin = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const userSnap = await getDoc(doc(db, "users", user.uid));
+
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        if (data.role === "admin") {
+          setIsAdmin(true);
+        }
+      }
+    };
+
+    checkAdmin();
+  }, []);
 
   const getPrice = (price) => {
     return Number(price) || 0;
@@ -81,6 +110,21 @@ function TrainDetaile() {
         ],
       },
     });
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteDoc(doc(db, "trainings", id));
+      setIsDeleteModalOpen(false);
+      setModalMsg("훈련이 삭제되었습니다.");
+      setIsModalOpen(true);
+      navigate("/train");
+    } catch (error) {
+      console.error(error);
+      setIsDeleteModalOpen(false);
+      setModalMsg("삭제 실패");
+      setIsModalOpen(true);
+    }
   };
 
   if (!item) return <div>로딩중...</div>;
@@ -165,13 +209,35 @@ function TrainDetaile() {
         </div>
 
         <div className="btn-group">
-          <button className="btn1" onClick={handleToPayment}>
-            결제하기
-          </button>
+          {!isAdmin && (
+            <>
+              <button className="btn1" onClick={handleToPayment}>
+                결제하기
+              </button>
 
-          <button className="btn3" onClick={handleAddToCart}>
-            장바구니 담기
-          </button>
+              <button className="btn3" onClick={handleAddToCart}>
+                장바구니 담기
+              </button>
+            </>
+          )}
+
+          {isAdmin && (
+            <>
+              <button
+                className="btn1"
+                onClick={() => setIsDeleteModalOpen(true)}
+              >
+                삭제하기
+              </button>
+
+              <button
+                className="btn3"
+                onClick={() => navigate("/train")}
+              >
+                목록으로
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -181,8 +247,15 @@ function TrainDetaile() {
         modalText={modalMsg}
         onClose={() => setIsModalOpen(false)}
       />
+
+      <ModalTwoBtn
+        isOpen={isDeleteModalOpen}
+        modalText="훈련을 삭제하시겠습니까?"
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 }
 
-export default TrainDetaile;
+export default TrainDetail;

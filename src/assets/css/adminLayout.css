@@ -35,4 +35,11 @@
     overflow-y: auto;
 
     max-width: 1600px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.content-box::-webkit-scrollbar {
+    display: none;
 }

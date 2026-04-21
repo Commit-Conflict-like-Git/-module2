@@ -1,0 +1,53 @@
+.trainer-container {
+    width: 100%;
+}
+
+.trainer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 20px;
+    margin-bottom: 20px;
+
+    background: #f1ede6;
+    border-radius: 12px;
+}
+
+.trainer-header-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.trainer-info {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px 10px;
+    border-bottom: 1px solid #e5dfd5;
+}
+
+.trainer-info p {
+    margin: 10px 0;
+}
+
+.trainer-file {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.trainer-training {
+    margin-top: 30px;
+}
+
+.trainer-training h3 {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .trainer-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

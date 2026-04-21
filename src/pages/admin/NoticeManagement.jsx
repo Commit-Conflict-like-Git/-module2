@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import List from '../../components/admin/List';
 import SearchBar from '../../components/admin/Searchbar.jsx';
 import "../../assets/css/adminSearchbar.css";
@@ -7,6 +8,8 @@ import { db } from '../../firebase/config.js';
 import { collection, getDocs } from "firebase/firestore";
 
 function NoticeManagement() {
+
+    const navigate = useNavigate();
 
     const [noticeData, setNoticeData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -21,7 +24,6 @@ function NoticeManagement() {
         if (!field) return data;
 
         return [...data].sort((a, b) => {
-
             const dateA = new Date(a[field]);
             const dateB = new Date(b[field]);
 
@@ -48,27 +50,24 @@ function NoticeManagement() {
 
     useEffect(() => {
         const fetchNotices = async () => {
-            try {
-                const snapshot = await getDocs(collection(db, "notices"));
+            const snapshot = await getDocs(collection(db, "notices"));
 
-                const results = snapshot.docs.map((doc) => {
-                    const data = doc.data();
+            const results = snapshot.docs.map((doc) => {
+                const data = doc.data();
 
-                    return {
-                        id: doc.id,
-                        title: data.noticeTitle,
-                        date: data.uploadDate
-                            ? formatDate(data.uploadDate)
-                            : null,
-                    };
-                });
+                return {
+                    id: doc.id,
+                    title: data.noticeTitle,
+                    content: data.noticeContent,
+                    uid: data.uid,
+                    date: data.uploadDate
+                        ? formatDate(data.uploadDate)
+                        : null,
+                };
+            });
 
-                setNoticeData(results);
-                setFilteredData(results);
-
-            } catch (error) {
-                console.error("공지사항 불러오기 실패:", error);
-            }
+            setNoticeData(results);
+            setFilteredData(results);
         };
 
         fetchNotices();
@@ -77,31 +76,21 @@ function NoticeManagement() {
     const formatDate = (timestamp) => {
         if (timestamp?.toDate) {
             const date = timestamp.toDate();
-
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, "0");
-            const day = String(date.getDate()).padStart(2, "0");
-
-            return `${year}-${month}-${day}`;
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
         }
-
         return timestamp;
     };
 
     const noticeColumns = [
         { key: "index", label: "No." },
         { key: "title", label: "제목" },
-        {
-            key: "date",
-            label: "작성일",
-            render: (row) =>
-                row.date ? formatDate({ toDate: () => new Date(row.date) }) : "-"
-        }
+        { key: "date", label: "작성일" }
     ];
 
     return (
         <>
-            <div>
+            <div className="notice-toolbar">
+
                 <SearchBar
                     sortOptions={[
                         { value: "latest", label: "최신순" },
@@ -109,14 +98,18 @@ function NoticeManagement() {
                     ]}
                     onChange={handleSearchChange}
                 />
+
+                <button className="btn1" onClick={() => navigate("/notice/upload")}>
+                    작성하기
+                </button>
+
             </div>
 
-            <div>
-                <List
-                    data={filteredData}
-                    columns={noticeColumns}
-                />
-            </div>
+            <List
+                data={filteredData}
+                columns={noticeColumns}
+                onRowClick={(row) => navigate(`/notice/${row.id}`)}
+            />
         </>
     );
 }

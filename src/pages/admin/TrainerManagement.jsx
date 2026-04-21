@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import List from '../../components/admin/List';
-import { db } from '../../firebase/config.js';
-import {
-    collection,
-    getDocs,
-    query,
-    where
-} from "firebase/firestore";
 import SearchBar from '../../components/admin/Searchbar.jsx';
 import "../../assets/css/adminSearchbar.css";
+import "../../assets/css/button.css";
+
+import { db } from '../../firebase/config.js';
+import { collection, getDocs } from "firebase/firestore";
 
 function TrainerManagement() {
 
+    const navigate = useNavigate();
+
     const [trainerData, setTrainerData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
+
+    const getStatusLabel = (status) => {
+        if (status === "active") return "활성화";
+        if (status === "inactive") return "비활성화";
+        return "활성화";
+    };
 
     const sortFieldMap = {
         name: "name",
@@ -51,40 +57,32 @@ function TrainerManagement() {
         }
 
         result = sortData(result, sort);
-
         setFilteredData(result);
     };
 
     useEffect(() => {
         const fetchUsers = async () => {
-            try {
-                const q = query(
-                    collection(db, "users"),
-                    where("role", "==", "trainer")
-                );
+            const snapshot = await getDocs(collection(db, "users"));
 
-                const snapshot = await getDocs(q);
-
-                const results = snapshot.docs.map((doc) => {
+            const results = snapshot.docs
+                .map(doc => {
                     const data = doc.data();
+                    if (data.role !== "trainer") return null;
 
                     return {
                         id: doc.id,
                         name: data.name,
                         phone: data.phoneNumber,
-                        date: data.createdAt
-                            ? data.createdAt.toDate().toISOString()
+                        date: data.signDate
+                            ? data.signDate
                             : null,
                         state: data.accountStatus,
                     };
-                });
+                })
+                .filter(Boolean);
 
-                setTrainerData(results);
-                setFilteredData(results);
-
-            } catch (error) {
-                console.error("trainer 불러오기 실패:", error);
-            }
+            setTrainerData(results);
+            setFilteredData(results);
         };
 
         fetchUsers();
@@ -100,28 +98,29 @@ function TrainerManagement() {
             render: (row) =>
                 row.date ? new Date(row.date).toLocaleDateString() : "-"
         },
-        { key: "state", label: "상태" },
+        {
+            key: "state",
+            label: "상태",
+            render: (row) => getStatusLabel(row.state)
+        },
     ];
 
     return (
         <>
-            <div>
-                <SearchBar
-                    sortOptions={[
-                        { value: "name", label: "이름순" },
-                        { value: "newest", label: "최근 가입일 순" },
-                        { value: "oldest", label: "가입일 순" }
-                    ]}
-                    onChange={handleSearchChange}
-                />
-            </div>
+            <SearchBar
+                sortOptions={[
+                    { value: "name", label: "이름순" },
+                    { value: "newest", label: "최근 가입일 순" },
+                    { value: "oldest", label: "가입일 순" }
+                ]}
+                onChange={handleSearchChange}
+            />
 
-            <div>
-                <List
-                    data={filteredData}
-                    columns={trainerColumns}
-                />
-            </div>
+            <List
+                data={filteredData}
+                columns={trainerColumns}
+                onRowClick={(row) => navigate(`/trainer/${row.id}`)}
+            />
         </>
     );
 }
