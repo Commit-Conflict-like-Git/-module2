@@ -2,13 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/css/trainDetail.css";
 import "../../assets/css/button.css";
 import { useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  deleteDoc
-} from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase/config";
 import ModalOneBtn from "../../components/public/modalOneBtn";
 import ModalTwoBtn from "../../components/public/modalTwoBtn";
@@ -172,17 +166,17 @@ function TrainDetail() {
         </div>
 
         {/* 공지 */}
-        <div className="notice-box">
-          <div className="notice-title-box">
-            <div className="notice-title">훈련 공지사항</div>
+        <div className="train-notice-box">
+          <div className="train-notice-title-box">
+            <div className="train-notice-title">훈련 공지사항</div>
             <button className="btn1">더보기</button>
           </div>
 
-          <div className="notice-content">
+          <div className="train-notice-content">
             훈련 이용 시 주의사항 및 안전 수칙
           </div>
-          <div className="notice-content">훈련사 피드백 확인 방법</div>
-          <div className="notice-content">
+          <div className="train-notice-content">훈련사 피드백 확인 방법</div>
+          <div className="train-notice-content">
             훈련 예약 취소 및 환불 규정에 대해 안내드립니다.
           </div>
         </div>
@@ -230,10 +224,7 @@ function TrainDetail() {
                 삭제하기
               </button>
 
-              <button
-                className="btn3"
-                onClick={() => navigate("/train")}
-              >
+              <button className="btn3" onClick={() => navigate("/train")}>
                 목록으로
               </button>
             </>
