@@ -1,9 +1,11 @@
 import React from "react";
+import "../../assets/css/searchBar.css";
 
 function SearchBar() {
   return (
     <div className="search-group">
       <select className="filter-select">
+        <option value="latest">선택해주세요</option>
         <option value="latest">최신순</option>
         <option value="popular">인기순</option>
       </select>

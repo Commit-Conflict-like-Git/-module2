@@ -12,9 +12,10 @@ function Payment() {
   const selectedItems = location.state?.selectedItems || [];
 
   const [dogs, setDogs] = useState([]);
-  const [selectedDogs, setSelectedDogs] = useState({});
+  const [userData, setUserData] = useState(null);
+  const [selectedDogs, setSelectedDogs] = useState({}); // { itemId: dogObject } 형태
 
-  // 모달
+  // 모달 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -25,26 +26,57 @@ function Payment() {
     return sum + price;
   }, 0);
 
-  // 유저 강아지 정보 가져오기
+  // 유저 및 강아지 정보 가져오기
   useEffect(() => {
-    const fetchDogs = async () => {
+    const fetchData = async () => {
       const user = auth.currentUser;
       if (!user) return;
 
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists()) {
-        setDogs(userDoc.data().dogs || []);
+      try {
+        // user에서 정보 가져오기
+        const infoRef = doc(db, "users", user.uid, "owner", "info_details");
+        const infoSnap = await getDoc(infoRef);
+
+        if (!infoSnap.exists()) return;
+
+        const data = infoSnap.data();
+        const dogIds = data.dogs || [];
+
+        setUserData(data);
+
+        // dogs 컬렉션에서 실제 정보 가져오기
+        const dogPromises = dogIds.map(async (dogId) => {
+          const dogRef = doc(db, "dogs", dogId);
+          const dogSnap = await getDoc(dogRef);
+
+          if (dogSnap.exists()) {
+            return {
+              id: dogId,
+              ...dogSnap.data(),
+            };
+          }
+          return null;
+        });
+
+        const dogList = (await Promise.all(dogPromises)).filter(Boolean);
+
+        setDogs(dogList);
+
+        console.log("강아지 목록:", dogList);
+      } catch (error) {
+        console.error("데이터 불러오기 실패:", error);
       }
     };
 
-    fetchDogs();
+    fetchData();
   }, []);
 
-  // 강아지 선택
+  // 1. 강아지 선택 시 객체 전체를 찾아 저장하도록 수정
   const handleDogChange = (itemId, dogId) => {
+    const dogInfo = dogs.find((d) => d.id === dogId); // ID로 강아지 객체 찾기
     setSelectedDogs((prev) => ({
       ...prev,
-      [itemId]: dogId,
+      [itemId]: dogInfo, // ID가 아닌 객체 자체를 저장
     }));
   };
 
@@ -52,8 +84,8 @@ function Payment() {
   const handleCompletePayment = async () => {
     const user = auth.currentUser;
 
-    if (!user) {
-      setModalMsg("로그인이 필요합니다.");
+    if (!user || !userData) {
+      setModalMsg("유저 정보가 없습니다. 로그인이 필요합니다.");
       setIsModalOpen(true);
       return;
     }
@@ -64,50 +96,61 @@ function Payment() {
       return;
     }
 
+    // 모든 항목에 강아지가 선택되었는지 확인
+    const allSelected = selectedItems.every(
+      (item) => selectedDogs[item.id || item.trainId],
+    );
+    if (!allSelected) {
+      setModalMsg("모든 항목에 대해 예약 강아지를 선택해주세요.");
+      setIsModalOpen(true);
+      return;
+    }
+
     try {
-      // 결제 저장
       await Promise.all(
-        selectedItems.map((item) =>
-          addDoc(collection(db, "payments"), {
+        selectedItems.map(async (item) => {
+          const dogInfo = selectedDogs[item.id || item.trainId];
+
+          return addDoc(collection(db, "payments"), {
             uid: user.uid,
             userEmail: user.email,
+            userName: userData.userName || user.displayName,
+
             trainId: item.trainId,
+            trainerId: item.trainerUid || item.trainerId || "",
             trainTitle: item.trainTitle,
             trainerName: item.trainerName,
             price: Number(item.price) || 0,
             date: item.date,
             trainPlace: item.trainPlace,
-            dogId: selectedDogs[item.id || item.trainId] || "default_dog_id",
+
+            // 강아지 정보
+            dogId: dogInfo?.id || "default_id",
+            dogName: dogInfo?.dogName || dogInfo?.name || "정보 없음",
+            dogPhoto: dogInfo?.dogPhoto || dogInfo?.photo || "",
+            dogType: dogInfo?.dogType || "",
+
             paymentDate: new Date().toISOString(),
             status: "결제완료",
-          }),
-        ),
-      );
-
-      // 장바구니 삭제
-      await Promise.all(
-        selectedItems.map((item) => {
-          if (item.id) {
-            return deleteDoc(doc(db, "carts", item.id));
-          }
+            feedback: "",
+          });
         }),
       );
 
-      setModalMsg("결제가 완료되었습니다.");
-      setIsModalOpen(true);
       setIsSuccess(true);
+      setModalMsg("결제가 정상적으로 완료되었습니다!");
+      setIsModalOpen(true);
     } catch (error) {
-      console.error("결제 실패:", error);
-      setModalMsg("결제 중 오류가 발생했습니다.");
+      console.error("결제 저장 실패:", error);
+      setModalMsg("결제 처리 중 오류가 발생했습니다.");
       setIsModalOpen(true);
     }
   };
 
-  // 모달 닫기
   const handleCloseModal = () => {
     setIsModalOpen(false);
     if (isSuccess) {
-      navigate("/");
+      navigate("/trainpaymentlist"); // 결제 완료 후 목록으로 이동
     }
   };
 
@@ -116,7 +159,6 @@ function Payment() {
       <div className="payment-title">결제하기</div>
 
       <div className="payment-card-wrapper">
-        {/* 왼쪽 */}
         <div className="left-container">
           {selectedItems.map((item) => (
             <div key={item.id || item.trainId} className="payment-item">
@@ -142,10 +184,9 @@ function Payment() {
                 }
               >
                 <option value="">강아지 선택</option>
-
                 {dogs.map((dog) => (
                   <option key={dog.id} value={dog.id}>
-                    {dog.name}
+                    {dog.dogName || dog.name}
                   </option>
                 ))}
               </select>
@@ -153,25 +194,19 @@ function Payment() {
               <div className="item-line"></div>
             </div>
           ))}
-
           {selectedItems.length === 0 && <p>결제할 정보가 없습니다.</p>}
         </div>
 
-        {/* 오른쪽 */}
         <div className="right-container">
           <div className="total-price-box">
             <p className="item-summary-title">
               {selectedItems.length > 1
-                ? `${selectedItems[0].trainTitle} 외 ${
-                    selectedItems.length - 1
-                  }건`
+                ? `${selectedItems[0].trainTitle} 외 ${selectedItems.length - 1}건`
                 : selectedItems[0]?.trainTitle}
             </p>
-
             <p className="total-label">총 금액</p>
             <p className="total-price">{totalAmount.toLocaleString()}원</p>
           </div>
-
           <button className="btn1" onClick={handleCompletePayment}>
             결제 하기
           </button>

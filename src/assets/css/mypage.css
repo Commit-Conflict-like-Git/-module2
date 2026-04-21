@@ -15,6 +15,7 @@
     height: 50px;
     margin-right: 20px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .user-content {
@@ -47,6 +48,13 @@
     border: 1px solid #6B5949;
 }
 
+.mypage-section-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .mypage-train-review {
     flex: 1;
     display: flex;
@@ -75,18 +83,18 @@
     align-items: center;
 }
 
-.mypage-section-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .myDog-title,
 .trainList-title,
 .reviewList-title {
     font-size: 20px;
     font-weight: bold;
+}
+
+.dog-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .dog-list,
@@ -113,6 +121,10 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.dog-name {
+    font-size: 18px;
 }
 
 .train-item-card {
