@@ -195,7 +195,7 @@ function DogRegister() {
             name="weight"
             type="number"
             step="0.1"
-            placeholder="kg 단위로 입력헤주세요"
+            placeholder="kg 단위로 입력해주세요"
             onChange={handleChange}
             required
           />

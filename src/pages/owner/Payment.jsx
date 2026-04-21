@@ -13,9 +13,7 @@ function Payment() {
 
   const [dogs, setDogs] = useState([]);
   const [userData, setUserData] = useState(null);
-  const [selectedDogs, setSelectedDogs] = useState({}); // { itemId: dogObject } 형태
-
-  // 모달 상태
+  const [selectedDogs, setSelectedDogs] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -101,7 +99,7 @@ function Payment() {
       (item) => selectedDogs[item.id || item.trainId],
     );
     if (!allSelected) {
-      setModalMsg("모든 항목에 대해 예약 강아지를 선택해주세요.");
+      setModalMsg("예약할 강아지를 선택해주세요.");
       setIsModalOpen(true);
       return;
     }
@@ -138,11 +136,11 @@ function Payment() {
       );
 
       setIsSuccess(true);
-      setModalMsg("결제가 정상적으로 완료되었습니다!");
+      setModalMsg("결제가 완료되었습니다.");
       setIsModalOpen(true);
     } catch (error) {
       console.error("결제 저장 실패:", error);
-      setModalMsg("결제 처리 중 오류가 발생했습니다.");
+      setModalMsg("결제 중 오류가 발생했습니다.");
       setIsModalOpen(true);
     }
   };
@@ -150,7 +148,7 @@ function Payment() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     if (isSuccess) {
-      navigate("/trainpaymentlist"); // 결제 완료 후 목록으로 이동
+      navigate("/trainpaymentlist");
     }
   };
 

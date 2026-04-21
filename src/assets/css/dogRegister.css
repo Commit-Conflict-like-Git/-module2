@@ -64,6 +64,7 @@
     margin-bottom: 20px;
     box-sizing: border-box;
     color: #6B5949;
+    resize: none;
 }
 
 .register-container input::placeholder,

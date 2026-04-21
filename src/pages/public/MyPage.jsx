@@ -166,7 +166,7 @@ function MyPage() {
           </div>
         </div>
 
-        {/* 오른쪽 섹션: 훈련 목록 및 후기 */}
+        {/* 오른쪽: 훈련 목록 및 후기 */}
         <div className="mypage-train-review">
           <div className="mypage-trainList">
             <div className="trainList-content">

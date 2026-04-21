@@ -31,12 +31,12 @@ function TrainPaymentList() {
         setIsTrainer(role === "TRAINER");
 
         // 2. 결제 내역 목록 가져오기
-        const q = query(
-          collection(db, "payments"),
-          where(role === "TRAINER" ? "trainerId" : "uid", "==", user.uid),
+        const querySnapshot = await getDocs(
+          query(
+            collection(db, "payments"),
+            where(role === "TRAINER" ? "trainerId" : "uid", "==", user.uid),
+          ),
         );
-
-        const querySnapshot = await getDocs(q);
         const list = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -63,7 +63,6 @@ function TrainPaymentList() {
         <h2>{isTrainer ? "담당 훈련 목록" : "나의 훈련 내역"}</h2>
       </div>
 
-      {/* 내부 스크롤이 적용될 영역 */}
       <div className="payment-grid">
         {payments.length === 0 ? (
           <div className="empty-msg-box">
@@ -74,7 +73,7 @@ function TrainPaymentList() {
             <div key={item.id} className="payment-item-card">
               <div className="card-top">
                 <span className={`badge ${item.feedback ? "done" : "wait"}`}>
-                  {item.status || (item.feedback ? "피드백완료" : "결제완료")}
+                  {item.status || (item.feedback ? "피드백 완료" : "결제 완료")}
                 </span>
                 <h3 className="card-title">{item.trainTitle}</h3>
               </div>
@@ -91,12 +90,6 @@ function TrainPaymentList() {
                   onClick={() => navigate(`/train/detail/${item.id}`)}
                 >
                   상세보기
-                </button>
-                <button
-                  className={`btn3 ${item.feedback ? "active" : ""}`}
-                  onClick={() => navigate(`/train/detail/${item.id}`)}
-                >
-                  {isTrainer ? "피드백 관리" : "피드백 보기"}
                 </button>
               </div>
             </div>
