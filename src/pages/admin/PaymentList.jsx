@@ -35,12 +35,19 @@ function PaymentList() {
                         name: data.trainerName,
                         price: data.price,
                         date: data.date,
-                        state: "완료", // 임시값 
+                        state: "완료",
                     };
                 });
 
                 setPaymentData(results);
-                setFilteredData(results);
+
+                const sorted = [...results].sort((a, b) => {
+                    const dateA = new Date(a.date);
+                    const dateB = new Date(b.date);
+                    return dateB - dateA;
+                });
+
+                setFilteredData(sorted);
 
             } catch (error) {
                 console.error("결제 데이터 불러오기 실패:", error);
@@ -49,6 +56,7 @@ function PaymentList() {
 
         fetchPayments();
     }, []);
+
 
     const handleFilter = ({ date, keyword }) => {
         let result = [...paymentData];

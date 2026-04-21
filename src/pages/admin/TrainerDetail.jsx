@@ -41,9 +41,9 @@ function TrainerDetail() {
         return "-";
     };
 
-    const handleDownload = async (fileName) => {
+    const handleDownload = async (userId, fileName) => {
         try {
-            const fileRef = ref(storage, `trainers/${fileName}`);
+            const fileRef = ref(storage, `trainers/${userId}/${fileName}`);
             const url = await getDownloadURL(fileRef);
             window.open(url, "_blank");
         } catch (error) {
@@ -145,7 +145,7 @@ function TrainerDetail() {
 
             <div className="trainer-header">
 
-                <h2>{trainer.name} 훈련사 정보</h2>
+                <h2>{trainer.name}</h2>
 
                 <div className="trainer-header-btns">
                     <button
@@ -184,7 +184,7 @@ function TrainerDetail() {
                         <img
                             src={downloadIcon}
                             alt="download"
-                            onClick={() => handleDownload(trainer.certificationFile)}
+                            onClick={() => handleDownload(id, trainer.certificationFile)}
                         />
                     </p>
 

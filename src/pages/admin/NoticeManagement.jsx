@@ -19,6 +19,8 @@ function NoticeManagement() {
         oldest: "date",
     };
 
+    const [sort, setSort] = useState("latest");
+
     const sortData = (data, sort) => {
         const field = sortFieldMap[sort];
         if (!field) return data;
@@ -67,7 +69,9 @@ function NoticeManagement() {
             });
 
             setNoticeData(results);
-            setFilteredData(results);
+
+            const sorted = sortData(results, sort);
+            setFilteredData(sorted);
         };
 
         fetchNotices();
