@@ -103,7 +103,7 @@ function NoticeManagement() {
                     onChange={handleSearchChange}
                 />
 
-                <button className="btn1" onClick={() => navigate("/notice/upload")}>
+                <button className="btn1" onClick={() => navigate("/admin/notice/upload")}>
                     작성하기
                 </button>
 
@@ -112,7 +112,7 @@ function NoticeManagement() {
             <List
                 data={filteredData}
                 columns={noticeColumns}
-                onRowClick={(row) => navigate(`/notice/${row.id}`)}
+                onRowClick={(row) => navigate(`/admin/notice/${row.id}`)}
             />
         </>
     );

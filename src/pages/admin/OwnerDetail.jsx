@@ -148,7 +148,7 @@ function OwnerDetail() {
 
                     <span
                         className="dog-more"
-                        onClick={() => navigate(`/owner/${id}/dogs`)}
+                        onClick={() => navigate(`/admin/owner/${id}/dogs`)}
                     >
                         더보기
                     </span>
@@ -162,10 +162,10 @@ function OwnerDetail() {
 
                             <img src={dog.photo} alt="dog" />
 
-                            <div className="dog-info">
+                            <div className="admin-dog-info">
                                 <p>이름: {dog.name}</p>
                                 <p>생년월일: {dog.birth}</p>
-                                <p>성별: {dog.gender === "male" ? "수컷" : "암컷"}</p>
+                                <p>성별: {dog.gender === "male" ? "남아" : "여아"}</p>
                                 <p>견종: {dog.breed}</p>
                                 <p>몸무게: {dog.weight}kg</p>
                             </div>

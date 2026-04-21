@@ -9,7 +9,7 @@ function SearchBar({
 }) {
     const [sort, setSort] = useState(sortOptions[0]?.value || '');
     const [keyword, setKeyword] = useState('');
-    const [date, setDate] = useState(''); // ⭐ 추가
+    const [date, setDate] = useState('');
 
     const handleSortChange = (e) => {
         const value = e.target.value;
