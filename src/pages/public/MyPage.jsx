@@ -189,12 +189,8 @@ function MyPage() {
                 payments.map((pay) => (
                   <div key={pay.id} className="train-item-card">
                     <p className="train-item-card-title">{pay.trainTitle}</p>
-                    <p>
-                      {isTrainer
-                        ? `신청자: ${pay.userName}`
-                        : `${pay.trainerName} 훈련사`}
-                    </p>
-                    <p>{pay.price?.toLocaleString()}원</p>
+                    <p>{pay.trainerName} 훈련사</p>
+                    <p>{Number(pay.price).toLocaleString()}원</p>
                   </div>
                 ))
               )}

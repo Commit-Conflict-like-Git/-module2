@@ -19,24 +19,34 @@ function TrainPaymentList() {
 
   useEffect(() => {
     const fetchData = async () => {
+      // 1. 현재 로그인 유저 확인
       const user = auth.currentUser;
-      if (!user) return;
+      if (!user) {
+        setLoading(false);
+        return;
+      }
 
       try {
-        // 1. 유저 역할 확인
+        // 2. 유저 역할 확인
         const userRef = doc(db, "users", user.uid);
         const userSnap = await getDoc(userRef);
         const userData = userSnap.data();
         const role = userData?.role?.toUpperCase();
-        setIsTrainer(role === "TRAINER");
 
-        // 2. 결제 내역 목록 가져오기
-        const querySnapshot = await getDocs(
-          query(
-            collection(db, "payments"),
-            where(role === "TRAINER" ? "trainerId" : "uid", "==", user.uid),
-          ),
-        );
+        const checkTrainer = role === "TRAINER";
+        setIsTrainer(checkTrainer);
+
+        let q;
+        if (checkTrainer) {
+          q = query(
+            collection(db, "trainings"),
+            where("trainerUid", "==", user.uid),
+          );
+        } else {
+          q = query(collection(db, "payments"), where("uid", "==", user.uid));
+        }
+
+        const querySnapshot = await getDocs(q);
         const list = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -51,6 +61,14 @@ function TrainPaymentList() {
     };
     fetchData();
   }, []);
+
+  const handleMoveNav = (item) => {
+    if (isTrainer) {
+      navigate(`/train/${item.id}`);
+    } else {
+      navigate(`/train/${item.trainId}`);
+    }
+  };
 
   if (loading) return <div className="loading">목록을 불러오는 중...</div>;
 
@@ -72,9 +90,6 @@ function TrainPaymentList() {
           payments.map((item) => (
             <div key={item.id} className="payment-item-card">
               <div className="card-top">
-                <span className={`badge ${item.feedback ? "done" : "wait"}`}>
-                  {item.status || (item.feedback ? "피드백 완료" : "결제 완료")}
-                </span>
                 <h3 className="card-title">{item.trainTitle}</h3>
               </div>
 
@@ -85,10 +100,7 @@ function TrainPaymentList() {
               </div>
 
               <div className="card-footer">
-                <button
-                  className="btn1"
-                  onClick={() => navigate(`/train/${item.trainId}`)}
-                >
+                <button className="btn1" onClick={() => handleMoveNav(item)}>
                   상세보기
                 </button>
               </div>
