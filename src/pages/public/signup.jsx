@@ -18,7 +18,8 @@ function Signup() {
         email: '',
         password: '',
         passwordConfirm: '',
-        certificationFile: null
+        certificationFile: null,
+        accountStatus: 'active'
     })
 
     const nextStep = async () => {

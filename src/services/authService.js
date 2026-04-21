@@ -1,6 +1,5 @@
 import { auth, db, storage } from '../firebase/config.js';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { doc, setDoc, collection, query, where, getDocs, serverTimestamp, getDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
@@ -31,7 +30,6 @@ export const signupWithDetail = async (formData) => {
 
         if (formData.role === 'trainer' && formData.certificationFile) {
             const file = formData.certificationFile;
-
             const storageRef = ref(storage, `trainers/${user.uid}/certificationFile`);
             const snapshot = await uploadBytes(storageRef, file);
             const downloadURL = await getDownloadURL(snapshot.ref);
@@ -42,8 +40,7 @@ export const signupWithDetail = async (formData) => {
         }
 
         // 추가 정보
-        const userDocRef = doc(db, "users", user.uid);
-        await setDoc(userDocRef, {
+        const userData = {
             uid: user.uid,
             role: formData.role,
             name: formData.name,
@@ -51,8 +48,15 @@ export const signupWithDetail = async (formData) => {
             birth: formData.birth,
             phoneNumber: formData.phoneNumber,
             email: formData.email,
+            accountStatus: 'active',
             createdAt: serverTimestamp()
-        });
+        };
+
+        if (formData.role === 'trainer') {
+            userData.approvalStatus = 'pending';
+        }
+
+        await setDoc(doc(db, "users", user.uid), userData);
 
         const subCollectionName = formData.role === 'owner' ? 'owner' : 'trainer';
         const subDocRef = doc(db, "users", user.uid, subCollectionName, "info_details");
@@ -68,8 +72,9 @@ export const signupWithDetail = async (formData) => {
         }
 
         await setDoc(subDocRef, detailData);
+        await signOut(auth);
 
-        console.log('회원가입 성공');
+        console.log('회원가입 성공 및 세션 종료');
         return user;
     } catch (error) {
         console.error('오류발생: ', error.code, error.message);
@@ -87,14 +92,19 @@ export const loginUser = async (email, password) => {
         if (userDoc.exists()) {
             const userData = userDoc.data();
 
-            if (userData.status === 'disabled') {
+            if (userData.accountStatus === 'inactive') {
+                await signOut(auth);
                 throw {code: 'auth/user-disabled-custom'};
             }
-            console.log(`[로그인 성공]`);
-        }
 
-        return user;
+            if (userData.role === 'trainer' && userData.approvalStatus === 'pending') {
+                await signOut(auth);
+                throw { code : 'auth/not-approved'};
+            }
+            return userData;
+        }
     } catch (error) {
-        throw error
+        console.error('로그인 오류: ', error.code, error.message);
+        throw error;
     }
 }
