@@ -16,13 +16,14 @@
     justify-content: space-between;
 }
 
-.payment-grid { 
+.list-container .payment-grid { 
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 25px;
     padding: 10px;
     overflow-y: auto; 
+    margin: 0px auto;
 }
 
 .payment-item-card {
