@@ -145,7 +145,7 @@ function TrainerDetail() {
 
             <div className="trainer-header">
 
-                <h2>{trainer.name} 훈련사 정보</h2>
+                <h2>{trainer.name}</h2>
 
                 <div className="trainer-header-btns">
                     <button

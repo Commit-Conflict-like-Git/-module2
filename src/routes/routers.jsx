@@ -3,6 +3,7 @@ import MainLayout from "../layout/public/MainLayout";
 import Home from "../pages/public/Home";
 import Train from "../pages/public/Train";
 import Notice from "../pages/public/Notice";
+import NoticeDetail from "../pages/public/NoticeDetail";
 import Signup from "../pages/public/signup";
 import TrainDetail from "../pages/public/TrainDetail";
 import Login from "../pages/public/Login";
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
         path: "notice",
         element: <Notice />,
       },
+      { path: 'notice/:id', element: <NoticeDetail /> },
       {
         path: "signup",
         element: <Signup />,

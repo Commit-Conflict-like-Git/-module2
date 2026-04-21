@@ -54,12 +54,10 @@
     background-color: #D7E1E8;
 }
 
-.search-group,
 .filter-select,
 .search-box,
 .search-box input,
-.filter-select option,
-.notice-toolbar {
+.filter-select option {
     background-color: #FFFDF9;
 }
 

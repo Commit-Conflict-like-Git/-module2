@@ -12,7 +12,7 @@ import {
     orderBy
 } from "firebase/firestore";
 
-import "../../assets/css/noticeDetail.css";
+import "../../assets/css/adminNoticeDetail.css";
 
 import ModalOneBtn from '../../components/public/modalOneBtn';
 import ModalTwoBtn from '../../components/public/modalTwoBtn';

@@ -1,0 +1,22 @@
+.notice-page-wrapper {
+    width: 100%;
+    min-height: 60vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice-box {
+    width: 1200px;
+    background: #FFFDF9;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px 30px;
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
