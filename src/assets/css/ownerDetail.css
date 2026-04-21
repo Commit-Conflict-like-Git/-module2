@@ -46,7 +46,7 @@
     background-color: transparent;
 }
 
-.dog-list {
+.admin-dog-list {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;

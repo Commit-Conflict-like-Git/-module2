@@ -6,12 +6,12 @@ import '../../assets/css/adminMain.css'
 
 function AdminLayout() {
     return (
-        <div className="app">
+        <div className="admin-app">
             <Sidebar />
-            <div className="main-area">
+            <div className="admin-main-area">
                 <Header />
-                <main className='content'>
-                    <div className='content-box'>
+                <main className='admin-content'>
+                    <div className='admin-content-box'>
                         <Outlet />
                     </div>
                 </main>

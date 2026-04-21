@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../assets/css/adminSearchbar.css';
+import searchIcon from '../../assets/img/reading-glasses.svg';
 
 function SearchBar({
     showSearch = true,
@@ -66,7 +67,7 @@ function SearchBar({
                     />
                     <div className="search-btn" onClick={handleSearch}>
                         <img
-                            src="src/assets/img/reading-glasses.svg"
+                            src={searchIcon}
                             alt="돋보기"
                         />
                     </div>

@@ -1,4 +1,4 @@
-.header {
+.admin-header {
     height: 6.5vh;
     width: 100%;
     background-color: #FFFDF9;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.header-content {
+.admin-header-content {
     width: 100%;
     padding: 0 2vw;
     display: flex;
@@ -15,7 +15,7 @@
     justify-content: space-between;
 }
 
-.header-title {
+.admin-header-title {
     font-weight: 600;
     font-size: clamp(18px, 1.5vw, 28px);
     margin: 0;
