@@ -169,7 +169,7 @@ function NoticeUpload() {
                     setShowResultModal(false);
 
                     if (resultText.includes("되었습니다")) {
-                        navigate("/");
+                        navigate("/admin");
                     }
                 }}
                 modalText={resultText}

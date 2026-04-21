@@ -136,7 +136,7 @@ function NoticeDetail() {
 
                 <button
                     className="btn1"
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/admin")}
                 >
                     목록으로
                 </button>
@@ -145,7 +145,7 @@ function NoticeDetail() {
                     <div className="admin-btns">
                         <button
                             className="btn1"
-                            onClick={() => navigate(`/notice/edit/${id}`)}
+                            onClick={() => navigate(`/admin/notice/edit/${id}`)}
                         >
                             수정하기
                         </button>
@@ -167,7 +167,7 @@ function NoticeDetail() {
                     className={`nav-item ${!nextNotice ? "disabled" : ""}`}
                     onClick={() => {
                         if (nextNotice) {
-                            navigate(`/notice/${nextNotice.id}`);
+                            navigate(`/admin/notice/${nextNotice.id}`);
                         }
                     }}
                 >
@@ -180,7 +180,7 @@ function NoticeDetail() {
                     className={`nav-item ${!prevNotice ? "disabled" : ""}`}
                     onClick={() => {
                         if (prevNotice) {
-                            navigate(`/notice/${prevNotice.id}`);
+                            navigate(`/admin/notice/${prevNotice.id}`);
                         }
                     }}
                 >
@@ -202,7 +202,7 @@ function NoticeDetail() {
                 onClose={() => {
                     setShowResultModal(false);
                     if (resultText.includes("삭제")) {
-                        navigate("/");
+                        navigate("/admin");
                     }
                 }}
                 modalText={resultText}

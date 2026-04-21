@@ -209,7 +209,7 @@ function TrainerDetail() {
                 <List
                     data={trainings}
                     columns={trainColumns}
-                    onRowClick={(row) => navigate(`/train/${row.id}`)}
+                    onRowClick={(row) => navigate(`/admin/train/${row.id}`)}
                 />
 
             </div>

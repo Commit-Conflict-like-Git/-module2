@@ -1,28 +1,32 @@
 import '../../assets/css/AdminSidebar.css';
 import logo from '../../assets/img/logo.svg';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { signOut } from "firebase/auth";
+import { auth } from '../../firebase/config';
 
 
 const AdminSidebar = () => {
+
+    const navigate = useNavigate();
     const location = useLocation();
 
     const menuItems = [
-        { id: 1, label: '공지사항', path: '/' },
-        { id: 2, label: '배너 관리', path: '/banner' },
-        { id: 3, label: '보호자 관리', path: '/owner' },
-        { id: 4, label: '훈련사 관리', path: '/trainer' },
-        { id: 5, label: '훈련 관리', path: '/train' },
-        { id: 6, label: '승인 관리', path: '/approve' },
-        { id: 7, label: '결제내역', path: '/payment' }
+        { id: 1, label: '공지사항', path: '/admin' },
+        { id: 2, label: '배너 관리', path: '/admin/banner' },
+        { id: 3, label: '보호자 관리', path: '/admin/owner' },
+        { id: 4, label: '훈련사 관리', path: '/admin/trainer' },
+        { id: 5, label: '훈련 관리', path: '/admin/train' },
+        { id: 6, label: '승인 관리', path: '/admin/approve' },
+        { id: 7, label: '결제내역', path: '/admin/payment' }
     ];
 
     const handleLogout = async () => {
         try {
-          await signOut(auth);
+            await signOut(auth);
 
-          navigate("/");
+            navigate("/");
         } catch (error) {
-          console.error("로그아웃 중 오류 발생:", error);
+            console.error("로그아웃 중 오류 발생:", error);
         }
     };
 

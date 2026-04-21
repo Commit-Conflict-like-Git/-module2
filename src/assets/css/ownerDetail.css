@@ -15,6 +15,10 @@
     border-radius: 12px;
 }
 
+.owner-header h2 {
+    background-color: transparent;
+}
+
 .owner-header-btns {
     display: flex;
     gap: 10px;
@@ -36,6 +40,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+}
+
+.dog-title h3 {
+    background-color: transparent;
 }
 
 .dog-list {
@@ -66,7 +74,7 @@
     background: #ddd;
 }
 
-.dog-info {
+.admin-dog-info {
     font-size: 14px;
     line-height: 1.6;
 }

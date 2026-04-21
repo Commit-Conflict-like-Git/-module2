@@ -22,7 +22,7 @@
 }
 
 
-.dog-card {
+.admin-dog-card {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
@@ -40,33 +40,35 @@
     align-items: flex-start;
 }
 
-.dog-image {
+.admin-dog-image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.dog-info h3 {
+.admin-dog-info h3 {
     margin-bottom: 8px;
     font-size: 18px;
+    background: transparent;
 }
 
-.dog-info p {
+.admin-dog-info p {
     margin: 3px 0;
     font-size: 14px;
 }
 
-.dog-note {
+.admin-dog-note {
     width: 40%;
 }
 
-.dog-note h4 {
+.admin-dog-note h4 {
     margin-bottom: 10px;
     font-size: 16px;
+    background: transparent;
 }
 
-.dog-note p {
+.admin-dog-note p {
     font-size: 14px;
     line-height: 1.4;
 }

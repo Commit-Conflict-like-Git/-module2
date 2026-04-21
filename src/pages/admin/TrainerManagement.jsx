@@ -123,7 +123,7 @@ function TrainerManagement() {
             <List
                 data={filteredData}
                 columns={trainerColumns}
-                onRowClick={(row) => navigate(`/trainer/${row.id}`)}
+                onRowClick={(row) => navigate(`/admin/trainer/${row.id}`)}
             />
         </>
     );

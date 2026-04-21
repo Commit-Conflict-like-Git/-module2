@@ -141,7 +141,7 @@ function OwnerManagement() {
         <List
           data={filteredData}
           columns={ownerColumns}
-          onRowClick={(row) => navigate(`/owner/${row.id}`)}
+          onRowClick={(row) => navigate(`/admin/owner/${row.id}`)}
         />
       </div>
     </>

@@ -2,7 +2,6 @@ table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
-    background: #FFFDF9;
 
 }
 
@@ -55,4 +54,10 @@ th {
     object-fit: contain;
     display: block;
     cursor: pointer;
+}
+
+table,
+thead th,
+tbody td {
+    background-color: #FFFDF9;
 }

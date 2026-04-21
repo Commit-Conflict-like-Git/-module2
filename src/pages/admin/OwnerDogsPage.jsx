@@ -54,27 +54,27 @@ function OwnerDogsPage() {
             {/* 리스트 */}
             <div className="dogs-list">
                 {dogs.map((dog) => (
-                    <div key={dog.id} className="dog-card">
+                    <div key={dog.id} className="admin-dog-card">
 
                         <div className="dog-left">
 
                             <img
                                 src={dog.photo}
                                 alt="dog"
-                                className="dog-image"
+                                className="admin-dog-image"
                             />
 
-                            <div className="dog-info">
+                            <div className="admin-dog-info">
                                 <h3>{dog.name}</h3>
                                 <p>생년월일: {dog.birth}</p>
-                                <p>성별: {dog.gender === "male" ? "수컷" : "암컷"}</p>
+                                <p>성별: {dog.gender === "male" ? "남아" : "여아"}</p>
                                 <p>견종: {dog.breed}</p>
                                 <p>몸무게: {dog.weight}kg</p>
                             </div>
 
                         </div>
 
-                        <div className="dog-note">
+                        <div className="admin-dog-note">
                             <h4>특이사항:</h4>
                             <p>{dog.note || "내용 없음"}</p>
                         </div>
