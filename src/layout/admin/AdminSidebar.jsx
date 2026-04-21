@@ -16,6 +16,16 @@ const AdminSidebar = () => {
         { id: 7, label: '결제내역', path: '/payment' }
     ];
 
+    const handleLogout = async () => {
+        try {
+          await signOut(auth);
+
+          navigate("/");
+        } catch (error) {
+          console.error("로그아웃 중 오류 발생:", error);
+        }
+    };
+
     return (
         <div className="sidebar">
             <div className="sidebar-logo">
@@ -35,7 +45,7 @@ const AdminSidebar = () => {
                 ))}
             </nav>
 
-            <div className="sidebar-logout">
+            <div className="sidebar-logout" onClick={handleLogout}>
                 로그아웃
             </div>
         </div>
