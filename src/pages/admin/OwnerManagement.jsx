@@ -30,6 +30,8 @@ function OwnerManagement() {
     oldest: "date",
   };
 
+  const [sort, setSort] = useState("newest");
+
   // 정렬 함수
   const sortData = (data, sort) => {
     const field = sortFieldMap[sort];
@@ -93,7 +95,9 @@ function OwnerManagement() {
         });
 
         setOwnerData(results);
-        setFilteredData(results); // 초기값
+
+        const sorted = sortData(results, sort);
+        setFilteredData(sorted);
 
       } catch (error) {
         console.error("owner 불러오기 실패:", error);

@@ -21,6 +21,8 @@ function TrainManagement() {
         oldest: "date",
     };
 
+    const [sort, setSort] = useState("newest");
+
     const sortData = (data, sort) => {
         const field = sortFieldMap[sort];
         if (!field) return data;
@@ -74,7 +76,9 @@ function TrainManagement() {
                 });
 
                 setTrainData(results);
-                setFilteredData(results);
+
+                const sorted = sortData(results, sort);
+                setFilteredData(sorted);
 
             } catch (error) {
                 console.error("훈련 데이터 불러오기 실패:", error);

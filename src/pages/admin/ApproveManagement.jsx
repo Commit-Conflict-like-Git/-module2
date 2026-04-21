@@ -37,9 +37,9 @@ function ApproveManagement() {
 
     const [selectedUserId, setSelectedUserId] = useState(null);
 
-    const handleDownload = async (fileName) => {
+    const handleDownload = async (userId, fileName) => {
         try {
-            const fileRef = ref(storage, `trainers/${fileName}`);
+            const fileRef = ref(storage, `trainers/${userId}/${fileName}`);
             const url = await getDownloadURL(fileRef);
             window.open(url, "_blank");
         } catch (error) {
@@ -127,7 +127,7 @@ function ApproveManagement() {
                 <div
                     onClick={(e) => {
                         e.stopPropagation();
-                        handleDownload(row.file);
+                        handleDownload(row.id, row.file);
                     }}
                     style={{ cursor: "pointer" }}
                 >
