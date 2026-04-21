@@ -11,6 +11,49 @@ import {
 
 function PaymentList() {
 
+    useEffect(() => {
+        const fetchPayments = async () => {
+            try {
+                const paymentSnapshot = await getDocs(collection(db, "payments"));
+                const userSnapshot = await getDocs(collection(db, "users"));
+
+                const userMap = {};
+                userSnapshot.docs.forEach(doc => {
+                    const data = doc.data();
+                    userMap[doc.id] = data.name;
+                });
+
+                const results = paymentSnapshot.docs.map((doc) => {
+                    const data = doc.data();
+
+                    const formattedDate = data.paymentDate
+                        ? new Date(data.paymentDate).toISOString().split("T")[0]
+                        : "-";
+
+                    return {
+                        id: doc.id,
+                        name: userMap[data.uid] || "-",
+                        price: data.price,
+                        date: formattedDate,
+                        state: "완료",
+                    };
+                });
+
+                const sorted = [...results].sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                });
+
+                setPaymentData(sorted);
+                setFilteredData(sorted);
+
+            } catch (error) {
+                console.error("결제 데이터 불러오기 실패:", error);
+            }
+        };
+
+        fetchPayments();
+    }, []);
+
     const paymentColumns = [
         { key: "index", label: "No." },
         { key: "name", label: "이름" },
@@ -34,7 +77,7 @@ function PaymentList() {
                         id: doc.id,
                         name: data.trainerName,
                         price: data.price,
-                        date: data.date,
+                        date: data.paymentDate,
                         state: "완료",
                     };
                 });

@@ -1,37 +1,47 @@
-.notice-container {
+.admin-notice-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
-.notice-title {
+.admin-notice-title {
     font-size: 24px;
     font-weight: bold;
+    padding-bottom: 20px;
+    background: transparent;
 }
 
-.form-group {
+.admin-form-group {
     margin-bottom: 25px;
 }
 
-.form-group label {
+.admin-form-group label {
     display: block;
     margin-bottom: 10px;
     font-weight: 600;
 }
 
-.form-group input,
-.form-group textarea {
+.admin-form-group input,
+.admin-form-group textarea {
     width: 100%;
     border: 1px solid #d5d0c7;
     border-radius: 12px;
     padding: 14px;
-    font-size: 14px;
+    font-size: 16px;
     background: #fff;
+    color: #6B5949;
 }
 
-.form-group textarea {
+.admin-form-group textarea {
     height: 300px;
     resize: none;
+    font-family: 'suite';
+}
+
+.admin-form-group input::placeholder,
+.admin-form-group textarea::placeholder {
+    color: #C2AA84;
+    font-size: 16px;
 }
 
 .btn-area {

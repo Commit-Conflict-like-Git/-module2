@@ -29,6 +29,9 @@
     color: #777;
 }
 
+.notice-box {
+    margin-top: 15px;
+}
 
 .notice-content {
     padding: 20px 10px 30px;

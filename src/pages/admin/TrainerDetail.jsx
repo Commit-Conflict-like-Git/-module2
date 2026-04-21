@@ -169,7 +169,7 @@ function TrainerDetail() {
 
                 <div>
                     <p>이름: {trainer.name}</p>
-                    <p>성별: {trainer.gender}</p>
+                    <p>성별: {trainer.gender === "male" ? "남성" : "여성"}</p>
                     <p>생년월일: {trainer.birth}</p>
                     <p>전화번호: {trainer.phoneNumber}</p>
                     <p>이메일: {trainer.email}</p>

@@ -108,15 +108,15 @@ function NoticeUpload() {
     };
 
     return (
-        <div className="notice-container">
+        <div className="admin-notice-container">
 
-            <h2 className="notice-title">
+            <h2 className="admin-notice-title">
                 {isEditMode ? "공지사항 수정" : "공지사항 등록"}
             </h2>
 
-            <div className="notice-form">
+            <div className="admin-notice-form">
 
-                <div className="form-group">
+                <div className="admin-form-group">
                     <label>제목</label>
                     <input
                         type="text"
@@ -127,7 +127,7 @@ function NoticeUpload() {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="admin-form-group">
                     <label>내용</label>
                     <textarea
                         value={content}

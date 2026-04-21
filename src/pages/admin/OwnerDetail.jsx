@@ -155,7 +155,7 @@ function OwnerDetail() {
 
                 </div>
 
-                <div className="dog-list">
+                <div className="admin-dog-list">
 
                     {dogs.slice(0, 2).map(dog => (
                         <div className="owner-dog-card" key={dog.id}>
