@@ -58,7 +58,7 @@ function TrainPaymentList() {
     <div className="list-container">
       <div className="list-header">
         <button className="back-link" onClick={() => navigate(-1)}>
-          ← 뒤로가기
+          &lt; 뒤로가기
         </button>
         <h2>{isTrainer ? "담당 훈련 목록" : "나의 훈련 내역"}</h2>
       </div>
@@ -87,7 +87,7 @@ function TrainPaymentList() {
               <div className="card-footer">
                 <button
                   className="btn1"
-                  onClick={() => navigate(`/train/detail/${item.id}`)}
+                  onClick={() => navigate(`/train/${item.trainId}`)}
                 >
                   상세보기
                 </button>
