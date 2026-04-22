@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/css/mypage.css";
 import userImg from "../../assets/img/user-img.svg";
+import dogDefault from '../../assets/img/dog.svg';
 import {
   doc,
   getDoc,
@@ -151,7 +152,7 @@ function MyPage() {
               dogs.map((dog) => (
                 <div key={dog.id} className="dog-card">
                   <img
-                    src={dog.photo || userImg}
+                    src={dog.photo || dogDefault}
                     alt={dog.name}
                     className="dog-img"
                   />
